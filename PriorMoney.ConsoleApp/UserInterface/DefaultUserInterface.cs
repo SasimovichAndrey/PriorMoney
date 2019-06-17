@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using PriorMoney.ConsoleApp.UserInterface.Commands;
 using System.Linq;
+using PriorMoney.DataImport.CsvImport;
 
 namespace PriorMoney.ConsoleApp.UserInterface
 {
@@ -14,7 +15,7 @@ namespace PriorMoney.ConsoleApp.UserInterface
         {
             _commands = new List<ValueTuple<IUserInterfaceCommand, string>>();
 
-            _commands.Add((new ImportCardOperationsCommand(1), "Импорт операций"));
+            _commands.Add((new ImportCardOperationsCommand(1, new FileSystemOperationsImporter("", new CsvCardOperationParser())), "Импорт операций"));
             _commands.Add((new ExitCurrentMenuCommand(1), "Выход"));
         }
         

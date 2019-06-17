@@ -8,3 +8,9 @@ C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.ConsoleApp\obj\Debug\
 C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.ConsoleApp\obj\Debug\netcoreapp2.2\PriorMoney.ConsoleApp.AssemblyInfo.cs
 C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.ConsoleApp\obj\Debug\netcoreapp2.2\PriorMoney.ConsoleApp.dll
 C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.ConsoleApp\obj\Debug\netcoreapp2.2\PriorMoney.ConsoleApp.pdb
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.ConsoleApp\obj\Debug\netcoreapp2.2\PriorMoney.ConsoleApp.csprojAssemblyReference.cache
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.ConsoleApp\bin\Debug\netcoreapp2.2\PriorMoney.DataImport.dll
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.ConsoleApp\bin\Debug\netcoreapp2.2\PriorMoney.Model.dll
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.ConsoleApp\bin\Debug\netcoreapp2.2\PriorMoney.DataImport.pdb
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.ConsoleApp\bin\Debug\netcoreapp2.2\PriorMoney.Model.pdb
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.ConsoleApp\obj\Debug\netcoreapp2.2\PriorMoney.ConsoleApp.csproj.CopyComplete

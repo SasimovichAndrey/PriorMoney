@@ -7,4 +7,9 @@ namespace PriorMoney.ConsoleApp.UserInterface
         int MenuLevel {get;set;}
         Task ExecuteAsync();
     }
+
+    public interface IUserInterfaceCommand<T> : IUserInterfaceCommand
+    {
+        Task<T> ExecuteAsync();
+    }
 }

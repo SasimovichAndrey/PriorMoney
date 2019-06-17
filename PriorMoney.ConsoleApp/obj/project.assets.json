@@ -207,6 +207,29 @@
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
+      },
+      "PriorMoney.DataImport/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "dependencies": {
+          "PriorMoney.Model": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/PriorMoney.DataImport.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PriorMoney.DataImport.dll": {}
+        }
+      },
+      "PriorMoney.Model/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "compile": {
+          "bin/placeholder/PriorMoney.Model.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PriorMoney.Model.dll": {}
+        }
       }
     }
   },
@@ -678,11 +701,23 @@
         "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
+    },
+    "PriorMoney.DataImport/1.0.0": {
+      "type": "project",
+      "path": "../PriorMoney.DataImport/PriorMoney.DataImport.csproj",
+      "msbuildProject": "../PriorMoney.DataImport/PriorMoney.DataImport.csproj"
+    },
+    "PriorMoney.Model/1.0.0": {
+      "type": "project",
+      "path": "../PriorMoney.Model/PriorMoney.Model.csproj",
+      "msbuildProject": "../PriorMoney.Model/PriorMoney.Model.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
-      "Microsoft.NETCore.App >= 2.2.0"
+      "Microsoft.NETCore.App >= 2.2.0",
+      "PriorMoney.DataImport >= 1.0.0",
+      "PriorMoney.Model >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -715,7 +750,14 @@
       },
       "frameworks": {
         "netcoreapp2.2": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\asasimovich\\source\\projects\\PriorMoney\\PriorMoney.DataImport\\PriorMoney.DataImport.csproj": {
+              "projectPath": "C:\\Users\\asasimovich\\source\\projects\\PriorMoney\\PriorMoney.DataImport\\PriorMoney.DataImport.csproj"
+            },
+            "C:\\Users\\asasimovich\\source\\projects\\PriorMoney\\PriorMoney.Model\\PriorMoney.Model.csproj": {
+              "projectPath": "C:\\Users\\asasimovich\\source\\projects\\PriorMoney\\PriorMoney.Model\\PriorMoney.Model.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
