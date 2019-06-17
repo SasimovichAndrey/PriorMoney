@@ -1,0 +1,9 @@
+C:\Users\Andrei Sasimovich\source\repos\PriorMoney.DataImport\PriorMoney.Model\bin\Debug\netcoreapp2.1\PriorMoney.Model.deps.json
+C:\Users\Andrei Sasimovich\source\repos\PriorMoney.DataImport\PriorMoney.Model\bin\Debug\netcoreapp2.1\PriorMoney.Model.dll
+C:\Users\Andrei Sasimovich\source\repos\PriorMoney.DataImport\PriorMoney.Model\bin\Debug\netcoreapp2.1\PriorMoney.Model.pdb
+C:\Users\Andrei Sasimovich\source\repos\PriorMoney.DataImport\PriorMoney.Model\obj\Debug\netcoreapp2.1\PriorMoney.Model.csprojAssemblyReference.cache
+C:\Users\Andrei Sasimovich\source\repos\PriorMoney.DataImport\PriorMoney.Model\obj\Debug\netcoreapp2.1\PriorMoney.Model.csproj.CoreCompileInputs.cache
+C:\Users\Andrei Sasimovich\source\repos\PriorMoney.DataImport\PriorMoney.Model\obj\Debug\netcoreapp2.1\PriorMoney.Model.AssemblyInfoInputs.cache
+C:\Users\Andrei Sasimovich\source\repos\PriorMoney.DataImport\PriorMoney.Model\obj\Debug\netcoreapp2.1\PriorMoney.Model.AssemblyInfo.cs
+C:\Users\Andrei Sasimovich\source\repos\PriorMoney.DataImport\PriorMoney.Model\obj\Debug\netcoreapp2.1\PriorMoney.Model.dll
+C:\Users\Andrei Sasimovich\source\repos\PriorMoney.DataImport\PriorMoney.Model\obj\Debug\netcoreapp2.1\PriorMoney.Model.pdb

@@ -1,0 +1,14 @@
+{
+  "ProjectFilePath": "c:\\Users\\Andrei Sasimovich\\source\\repos\\PriorMoney.DataImport\\PriorMoney.Model\\PriorMoney.Model.csproj",
+  "TargetFramework": "netcoreapp2.1",
+  "TagHelpers": [],
+  "Configuration": {
+    "ConfigurationName": "UnsupportedRazor",
+    "LanguageVersion": "1.0",
+    "Extensions": [
+      {
+        "ExtensionName": "UnsupportedRazorExtension"
+      }
+    ]
+  }
+}

@@ -1,0 +1,191 @@
+{
+  "format": 1,
+  "restore": {
+    "f:\\Projects\\dotNet\\PriorMoney.DataImport\\PriorMoney.DataImport.Tests\\PriorMoney.DataImport.Tests.csproj": {}
+  },
+  "projects": {
+    "f:\\Projects\\dotNet\\PriorMoney.DataImport\\PriorMoney.DataImport.Tests\\PriorMoney.DataImport.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "f:\\Projects\\dotNet\\PriorMoney.DataImport\\PriorMoney.DataImport.Tests\\PriorMoney.DataImport.Tests.csproj",
+        "projectName": "PriorMoney.DataImport.Tests",
+        "projectPath": "f:\\Projects\\dotNet\\PriorMoney.DataImport\\PriorMoney.DataImport.Tests\\PriorMoney.DataImport.Tests.csproj",
+        "packagesPath": "C:\\Users\\Andrei Sasimovich\\.nuget\\packages\\",
+        "outputPath": "f:\\Projects\\dotNet\\PriorMoney.DataImport\\PriorMoney.DataImport.Tests\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Andrei Sasimovich\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "f:\\Projects\\dotNet\\PriorMoney.DataImport\\PriorMoney.DataImport\\PriorMoney.DataImport.csproj": {
+                "projectPath": "f:\\Projects\\dotNet\\PriorMoney.DataImport\\PriorMoney.DataImport\\PriorMoney.DataImport.csproj"
+              },
+              "f:\\Projects\\dotNet\\PriorMoney.DataImport\\PriorMoney.Model\\PriorMoney.Model.csproj": {
+                "projectPath": "f:\\Projects\\dotNet\\PriorMoney.DataImport\\PriorMoney.Model\\PriorMoney.Model.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.1.1, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "NUnit": {
+              "target": "Package",
+              "version": "[3.12.0, )"
+            },
+            "NUnit3TestAdapter": {
+              "target": "Package",
+              "version": "[3.13.0, )"
+            },
+            "System.Text.Encoding.CodePages": {
+              "target": "Package",
+              "version": "[4.5.1, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "f:\\Projects\\dotNet\\PriorMoney.DataImport\\PriorMoney.DataImport\\PriorMoney.DataImport.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "f:\\Projects\\dotNet\\PriorMoney.DataImport\\PriorMoney.DataImport\\PriorMoney.DataImport.csproj",
+        "projectName": "PriorMoney.DataImport",
+        "projectPath": "f:\\Projects\\dotNet\\PriorMoney.DataImport\\PriorMoney.DataImport\\PriorMoney.DataImport.csproj",
+        "packagesPath": "C:\\Users\\Andrei Sasimovich\\.nuget\\packages\\",
+        "outputPath": "f:\\Projects\\dotNet\\PriorMoney.DataImport\\PriorMoney.DataImport\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Andrei Sasimovich\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "f:\\Projects\\dotNet\\PriorMoney.DataImport\\PriorMoney.Model\\PriorMoney.Model.csproj": {
+                "projectPath": "f:\\Projects\\dotNet\\PriorMoney.DataImport\\PriorMoney.Model\\PriorMoney.Model.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "f:\\Projects\\dotNet\\PriorMoney.DataImport\\PriorMoney.Model\\PriorMoney.Model.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "f:\\Projects\\dotNet\\PriorMoney.DataImport\\PriorMoney.Model\\PriorMoney.Model.csproj",
+        "projectName": "PriorMoney.Model",
+        "projectPath": "f:\\Projects\\dotNet\\PriorMoney.DataImport\\PriorMoney.Model\\PriorMoney.Model.csproj",
+        "packagesPath": "C:\\Users\\Andrei Sasimovich\\.nuget\\packages\\",
+        "outputPath": "f:\\Projects\\dotNet\\PriorMoney.DataImport\\PriorMoney.Model\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Andrei Sasimovich\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

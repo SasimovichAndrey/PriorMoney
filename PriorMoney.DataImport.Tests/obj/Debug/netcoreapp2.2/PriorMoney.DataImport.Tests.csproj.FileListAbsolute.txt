@@ -1,0 +1,40 @@
+C:\Users\Andrei Sasimovich\source\repos\PriorMoney.DataImport\PriorMoney.DataImport.Tests\bin\Debug\netcoreapp2.2\NUnit3.TestAdapter.dll
+C:\Users\Andrei Sasimovich\source\repos\PriorMoney.DataImport\PriorMoney.DataImport.Tests\bin\Debug\netcoreapp2.2\NUnit3.TestAdapter.pdb
+C:\Users\Andrei Sasimovich\source\repos\PriorMoney.DataImport\PriorMoney.DataImport.Tests\bin\Debug\netcoreapp2.2\nunit.engine.netstandard.dll
+C:\Users\Andrei Sasimovich\source\repos\PriorMoney.DataImport\PriorMoney.DataImport.Tests\bin\Debug\netcoreapp2.2\Data\test.csv
+C:\Users\Andrei Sasimovich\source\repos\PriorMoney.DataImport\PriorMoney.DataImport.Tests\bin\Debug\netcoreapp2.2\PriorMoney.DataImport.Tests.deps.json
+C:\Users\Andrei Sasimovich\source\repos\PriorMoney.DataImport\PriorMoney.DataImport.Tests\bin\Debug\netcoreapp2.2\PriorMoney.DataImport.Tests.runtimeconfig.json
+C:\Users\Andrei Sasimovich\source\repos\PriorMoney.DataImport\PriorMoney.DataImport.Tests\bin\Debug\netcoreapp2.2\PriorMoney.DataImport.Tests.runtimeconfig.dev.json
+C:\Users\Andrei Sasimovich\source\repos\PriorMoney.DataImport\PriorMoney.DataImport.Tests\bin\Debug\netcoreapp2.2\PriorMoney.DataImport.Tests.dll
+C:\Users\Andrei Sasimovich\source\repos\PriorMoney.DataImport\PriorMoney.DataImport.Tests\bin\Debug\netcoreapp2.2\PriorMoney.DataImport.Tests.pdb
+C:\Users\Andrei Sasimovich\source\repos\PriorMoney.DataImport\PriorMoney.DataImport.Tests\bin\Debug\netcoreapp2.2\PriorMoney.DataImport.dll
+C:\Users\Andrei Sasimovich\source\repos\PriorMoney.DataImport\PriorMoney.DataImport.Tests\bin\Debug\netcoreapp2.2\PriorMoney.Model.dll
+C:\Users\Andrei Sasimovich\source\repos\PriorMoney.DataImport\PriorMoney.DataImport.Tests\bin\Debug\netcoreapp2.2\PriorMoney.DataImport.pdb
+C:\Users\Andrei Sasimovich\source\repos\PriorMoney.DataImport\PriorMoney.DataImport.Tests\bin\Debug\netcoreapp2.2\PriorMoney.Model.pdb
+C:\Users\Andrei Sasimovich\source\repos\PriorMoney.DataImport\PriorMoney.DataImport.Tests\obj\Debug\netcoreapp2.2\PriorMoney.DataImport.Tests.csprojAssemblyReference.cache
+C:\Users\Andrei Sasimovich\source\repos\PriorMoney.DataImport\PriorMoney.DataImport.Tests\obj\Debug\netcoreapp2.2\PriorMoney.DataImport.Tests.csproj.CoreCompileInputs.cache
+C:\Users\Andrei Sasimovich\source\repos\PriorMoney.DataImport\PriorMoney.DataImport.Tests\obj\Debug\netcoreapp2.2\PriorMoney.DataImport.Tests.AssemblyInfoInputs.cache
+C:\Users\Andrei Sasimovich\source\repos\PriorMoney.DataImport\PriorMoney.DataImport.Tests\obj\Debug\netcoreapp2.2\PriorMoney.DataImport.Tests.AssemblyInfo.cs
+C:\Users\Andrei Sasimovich\source\repos\PriorMoney.DataImport\PriorMoney.DataImport.Tests\obj\Debug\netcoreapp2.2\PriorMoney.DataImport.Tests.csproj.CopyComplete
+C:\Users\Andrei Sasimovich\source\repos\PriorMoney.DataImport\PriorMoney.DataImport.Tests\obj\Debug\netcoreapp2.2\PriorMoney.DataImport.Tests.dll
+C:\Users\Andrei Sasimovich\source\repos\PriorMoney.DataImport\PriorMoney.DataImport.Tests\obj\Debug\netcoreapp2.2\PriorMoney.DataImport.Tests.pdb
+f:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.DataImport.Tests\bin\Debug\netcoreapp2.2\NUnit3.TestAdapter.dll
+f:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.DataImport.Tests\bin\Debug\netcoreapp2.2\NUnit3.TestAdapter.pdb
+f:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.DataImport.Tests\bin\Debug\netcoreapp2.2\nunit.engine.netstandard.dll
+f:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.DataImport.Tests\bin\Debug\netcoreapp2.2\Data\test.csv
+f:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.DataImport.Tests\bin\Debug\netcoreapp2.2\PriorMoney.DataImport.Tests.deps.json
+f:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.DataImport.Tests\bin\Debug\netcoreapp2.2\PriorMoney.DataImport.Tests.runtimeconfig.json
+f:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.DataImport.Tests\bin\Debug\netcoreapp2.2\PriorMoney.DataImport.Tests.runtimeconfig.dev.json
+f:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.DataImport.Tests\bin\Debug\netcoreapp2.2\PriorMoney.DataImport.Tests.dll
+f:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.DataImport.Tests\bin\Debug\netcoreapp2.2\PriorMoney.DataImport.Tests.pdb
+f:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.DataImport.Tests\bin\Debug\netcoreapp2.2\PriorMoney.DataImport.dll
+f:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.DataImport.Tests\bin\Debug\netcoreapp2.2\PriorMoney.Model.dll
+f:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.DataImport.Tests\bin\Debug\netcoreapp2.2\PriorMoney.DataImport.pdb
+f:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.DataImport.Tests\bin\Debug\netcoreapp2.2\PriorMoney.Model.pdb
+f:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.DataImport.Tests\obj\Debug\netcoreapp2.2\PriorMoney.DataImport.Tests.csprojAssemblyReference.cache
+f:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.DataImport.Tests\obj\Debug\netcoreapp2.2\PriorMoney.DataImport.Tests.csproj.CoreCompileInputs.cache
+f:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.DataImport.Tests\obj\Debug\netcoreapp2.2\PriorMoney.DataImport.Tests.AssemblyInfoInputs.cache
+f:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.DataImport.Tests\obj\Debug\netcoreapp2.2\PriorMoney.DataImport.Tests.AssemblyInfo.cs
+f:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.DataImport.Tests\obj\Debug\netcoreapp2.2\PriorMoney.DataImport.Tests.csproj.CopyComplete
+f:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.DataImport.Tests\obj\Debug\netcoreapp2.2\PriorMoney.DataImport.Tests.dll
+f:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.DataImport.Tests\obj\Debug\netcoreapp2.2\PriorMoney.DataImport.Tests.pdb
