@@ -16,12 +16,3 @@ f:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.Model\obj\Debug\netcoreapp2.
 f:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.Model\obj\Debug\netcoreapp2.2\PriorMoney.Model.AssemblyInfo.cs
 f:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.Model\obj\Debug\netcoreapp2.2\PriorMoney.Model.dll
 f:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.Model\obj\Debug\netcoreapp2.2\PriorMoney.Model.pdb
-C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.Model\bin\Debug\netcoreapp2.2\PriorMoney.Model.deps.json
-C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.Model\bin\Debug\netcoreapp2.2\PriorMoney.Model.dll
-C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.Model\bin\Debug\netcoreapp2.2\PriorMoney.Model.pdb
-C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.Model\obj\Debug\netcoreapp2.2\PriorMoney.Model.csprojAssemblyReference.cache
-C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.Model\obj\Debug\netcoreapp2.2\PriorMoney.Model.csproj.CoreCompileInputs.cache
-C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.Model\obj\Debug\netcoreapp2.2\PriorMoney.Model.AssemblyInfoInputs.cache
-C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.Model\obj\Debug\netcoreapp2.2\PriorMoney.Model.AssemblyInfo.cs
-C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.Model\obj\Debug\netcoreapp2.2\PriorMoney.Model.dll
-C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.Model\obj\Debug\netcoreapp2.2\PriorMoney.Model.pdb

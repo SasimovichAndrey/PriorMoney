@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Threading.Tasks;
 using PriorMoney.ConsoleApp.Model;
 using PriorMoney.ConsoleApp.UserInterface;
@@ -25,6 +26,7 @@ namespace PriorMoney.ConsoleApp
         private static void InitApp(ConsoleAppConfig cfg)
         {
             // init app
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
         }
 
         private static ConsoleAppConfig ReadConfig()

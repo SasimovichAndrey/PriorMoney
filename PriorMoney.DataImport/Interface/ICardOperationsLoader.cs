@@ -4,8 +4,8 @@ using PriorMoney.Model;
 
 namespace PriorMoney.DataImport.Interface
 {
-    public interface ICardOperationsImporter
+    public interface ICardOperationsLoader
     {
-         Task<List<CardOperation>> ImportAsync();
+        Task<List<CardOperation>> LoadAsync();
     }
 }

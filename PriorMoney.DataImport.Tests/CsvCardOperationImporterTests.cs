@@ -12,7 +12,7 @@ namespace PriorMoney.DataImport.Tests
     public class CsvCardOperationImporterTests
     {
         private string _csvString;
-        private ICarOperationParser _importer;
+        private ICarOperationParser _parser;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -29,7 +29,7 @@ namespace PriorMoney.DataImport.Tests
         [SetUp]
         public void SetUp()
         {
-            _importer = new CsvCardOperationParser();
+            _parser = new CsvCardOperationParser();
         }
 
         [Test]
@@ -81,7 +81,7 @@ namespace PriorMoney.DataImport.Tests
                 },
             };
 
-            CardOperation[] actualData = _importer.Import(_csvString);
+            CardOperation[] actualData = _parser.Parse(_csvString);
 
             Func<CardOperation, CardOperation, bool> cardOperationComparer = (op1, op2) =>
             {
@@ -100,7 +100,7 @@ namespace PriorMoney.DataImport.Tests
         {
             var badCsvString = "bad string";
 
-            TestDelegate importAction = () => _importer.Import(badCsvString);
+            TestDelegate importAction = () => _parser.Parse(badCsvString);
 
             Assert.Throws<ArgumentException>(importAction);
         }

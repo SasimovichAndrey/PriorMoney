@@ -1,25 +1,49 @@
+using System;
 using System.Threading.Tasks;
+using PriorMoney.ConsoleApp.UserInterface.Tools;
 using PriorMoney.Model;
 
 namespace PriorMoney.ConsoleApp.UserInterface.Commands
 {
     public class EditCardOperationUserInterfaceCommand : BaseUserInterfaceCommand, IUserInterfaceCommand<CardOperation>
     {
-        private readonly CardOperation operation;
+        private readonly CardOperation _operation;
+        private readonly IModelStringView<CardOperation> _operationStringView;
 
-        public EditCardOperationUserInterfaceCommand(int menuLevel, CardOperation operation) : base(menuLevel)
+        public EditCardOperationUserInterfaceCommand(int menuLevel, CardOperation operation, IModelStringView<CardOperation> operationStringView) : base(menuLevel)
         {
-            this.operation = operation;
+            this._operation = operation;
+            this._operationStringView = operationStringView;
         }
 
-        public Task<CardOperation> ExecuteAsync()
+        public new Task<CardOperation> ExecuteAsync()
         {
-            throw new System.NotImplementedException();
+            Console.WriteLine($"Операция: {_operationStringView.GetView(_operation)}");
+
+            var newOperation = _operation.Clone();
+            if (ConsoleExtensions.AskYesNo("Редактировать?"))
+            {
+
+                EditProperty("Имя операции", _operation.Name, (value) => { newOperation.Name = value; });
+                EditProperty("Дата", _operation.DateTime, (value) => { DateTime parsedValue; if (DateTime.TryParse(value, out parsedValue)) newOperation.DateTime = parsedValue; });
+                EditProperty("Потрачено / получено", _operation.Amount, (value) => { decimal parsedValue; if (decimal.TryParse(value, out parsedValue)) newOperation.Amount = parsedValue; });
+
+                return Task.FromResult(newOperation);
+            }
+            else
+            {
+                return Task.FromResult(newOperation);
+            }
         }
 
-        Task IUserInterfaceCommand.ExecuteAsync()
+        private void EditProperty(string propName, object propValue, Action<string> setPropFunc)
         {
-            throw new System.NotImplementedException();
+            Console.Write($"{propName} ({propValue.ToString()}): ");
+            var propValueStr = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(propValueStr))
+            {
+                setPropFunc(propValueStr);
+            }
         }
     }
 }

@@ -13,5 +13,16 @@ namespace PriorMoney.Model
         {
             return $"{DateTime} {Name} {Amount} {Currency}";
         }
+
+        public CardOperation Clone()
+        {
+            return new CardOperation
+            {
+                Name = Name,
+                DateTime = DateTime,
+                Amount = Amount,
+                Currency = Currency
+            };
+        }
     }
 }

@@ -15,10 +15,11 @@ namespace PriorMoney.ConsoleApp.UserInterface
         {
             _commands = new List<ValueTuple<IUserInterfaceCommand, string>>();
 
-            _commands.Add((new ImportCardOperationsCommand(1, new FileSystemOperationsImporter("", new CsvCardOperationParser())), "Импорт операций"));
+            var dataFolderPath = @"C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.ConsoleApp\TestDataFolder";
+            _commands.Add((new ImportCardOperationsCommand(1, new FileSystemOperationsLoader(dataFolderPath, new CsvCardOperationParser(), new DefaultReportFileChoseStrategy()), new CardOperationStringView()), "Импорт операций"));
             _commands.Add((new ExitCurrentMenuCommand(1), "Выход"));
         }
-        
+
         public async Task StartAsync()
         {
             IUserInterfaceCommand command;
@@ -28,7 +29,7 @@ namespace PriorMoney.ConsoleApp.UserInterface
 
                 command = GetCommandFromUserInput();
 
-                if(command != null)
+                if (command != null)
                 {
                     Console.Clear();
                     await command.ExecuteAsync();
@@ -37,8 +38,8 @@ namespace PriorMoney.ConsoleApp.UserInterface
                 {
                     Console.WriteLine("Попробуй ещё разок, дружок");
                 }
-                
-            } while(!(command is ExitCurrentMenuCommand));
+
+            } while (!(command is ExitCurrentMenuCommand));
         }
 
         private IUserInterfaceCommand GetCommandFromUserInput()
@@ -46,7 +47,7 @@ namespace PriorMoney.ConsoleApp.UserInterface
             var userInput = Console.ReadLine();
 
             int parsedUserInput;
-            if(int.TryParse(userInput, out parsedUserInput))
+            if (int.TryParse(userInput, out parsedUserInput))
             {
                 return _commands[parsedUserInput].Item1;
             }
@@ -58,7 +59,7 @@ namespace PriorMoney.ConsoleApp.UserInterface
 
         private void RenderMenu()
         {
-            for(int i = 0; i < _commands.Count(); i++)
+            for (int i = 0; i < _commands.Count(); i++)
             {
                 Console.WriteLine($"{i}. {_commands[i].Item2}");
             }

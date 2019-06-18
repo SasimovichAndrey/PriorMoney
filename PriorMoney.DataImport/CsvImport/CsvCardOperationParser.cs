@@ -11,7 +11,7 @@ namespace PriorMoney.DataImport.CsvImport
 {
     public class CsvCardOperationParser : ICarOperationParser
     {
-        public CardOperation[] Import(string csvStringToImportFrom)
+        public CardOperation[] Parse(string csvStringToImportFrom)
         {
             List<CardOperation> operations = new List<CardOperation>();
 
@@ -19,13 +19,13 @@ namespace PriorMoney.DataImport.CsvImport
             var operationLineBlockRegex = new Regex(@"Операции по.*\n(((?!Всего по контракту).*\n)*)[\n]{0,1}Всего по контракту");
             var operationLineBlockMatches = operationLineBlockRegex.Matches(csvStringToImportFrom);
 
-            if(operationLineBlockMatches.Count == 0)
+            if (operationLineBlockMatches.Count == 0)
             {
                 throw new ArgumentException("The file doesn't contain operation data in acceptable format");
             }
 
             // Process each data block
-            foreach(Match operationBlockMatch in operationLineBlockMatches)
+            foreach (Match operationBlockMatch in operationLineBlockMatches)
             {
                 var headerRowsToSkip = 1;
                 var operationLinesGroupIndex = 2;
@@ -39,7 +39,7 @@ namespace PriorMoney.DataImport.CsvImport
                 var operationLineRegex = new Regex("(.*;){9}");
 
                 // Populate result array with CardOperation objects created based on captured string lines
-                foreach(var operationLine in operationLines)
+                foreach (var operationLine in operationLines)
                 {
                     int cellGroupIndex = 1;
                     var cells = operationLineRegex.Match(operationLine)
