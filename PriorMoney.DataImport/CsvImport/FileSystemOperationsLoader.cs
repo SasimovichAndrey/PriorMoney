@@ -11,10 +11,10 @@ namespace PriorMoney.DataImport.CsvImport
     public class FileSystemOperationsLoader : ICardOperationsLoader
     {
         private readonly string _dataFolderPath;
-        private readonly ICarOperationParser _cardOperationParser;
+        private readonly ICardOperationParser _cardOperationParser;
         private readonly IReportFileChoseStrategy _fileChoseStrategy;
 
-        public FileSystemOperationsLoader(string dataFolderPath, ICarOperationParser cardOperationParser, IReportFileChoseStrategy fileChoseStrategy)
+        public FileSystemOperationsLoader(string dataFolderPath, ICardOperationParser cardOperationParser, IReportFileChoseStrategy fileChoseStrategy)
         {
             _dataFolderPath = dataFolderPath;
             _cardOperationParser = cardOperationParser;

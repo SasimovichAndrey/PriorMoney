@@ -4,7 +4,7 @@ using PriorMoney.Model;
 
 namespace PriorMoney.DataImport.Interface
 {
-    public interface ICarOperationParser
+    public interface ICardOperationParser
     {
         CardOperation[] Parse(string csvString);
     }

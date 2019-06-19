@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 
 namespace PriorMoney.DataImport.CsvImport
 {
-    public class CsvCardOperationParser : ICarOperationParser
+    public class CsvCardOperationParser : ICardOperationParser
     {
         public CardOperation[] Parse(string csvStringToImportFrom)
         {

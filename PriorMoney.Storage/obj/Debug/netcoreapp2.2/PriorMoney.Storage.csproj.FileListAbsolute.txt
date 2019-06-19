@@ -22,3 +22,15 @@ F:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.Storage\obj\Debug\netcoreapp
 F:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.Storage\obj\Debug\netcoreapp2.2\PriorMoney.Storage.csproj.CopyComplete
 F:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.Storage\obj\Debug\netcoreapp2.2\PriorMoney.Storage.dll
 F:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.Storage\obj\Debug\netcoreapp2.2\PriorMoney.Storage.pdb
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.Storage\bin\Debug\netcoreapp2.2\PriorMoney.Storage.deps.json
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.Storage\bin\Debug\netcoreapp2.2\PriorMoney.Storage.dll
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.Storage\bin\Debug\netcoreapp2.2\PriorMoney.Storage.pdb
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.Storage\bin\Debug\netcoreapp2.2\PriorMoney.Model.dll
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.Storage\bin\Debug\netcoreapp2.2\PriorMoney.Model.pdb
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.Storage\obj\Debug\netcoreapp2.2\PriorMoney.Storage.csprojAssemblyReference.cache
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.Storage\obj\Debug\netcoreapp2.2\PriorMoney.Storage.csproj.CoreCompileInputs.cache
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.Storage\obj\Debug\netcoreapp2.2\PriorMoney.Storage.AssemblyInfoInputs.cache
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.Storage\obj\Debug\netcoreapp2.2\PriorMoney.Storage.AssemblyInfo.cs
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.Storage\obj\Debug\netcoreapp2.2\PriorMoney.Storage.csproj.CopyComplete
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.Storage\obj\Debug\netcoreapp2.2\PriorMoney.Storage.dll
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.Storage\obj\Debug\netcoreapp2.2\PriorMoney.Storage.pdb

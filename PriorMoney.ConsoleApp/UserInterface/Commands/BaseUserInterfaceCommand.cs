@@ -4,12 +4,7 @@ namespace PriorMoney.ConsoleApp.UserInterface.Commands
 {
     public abstract class BaseUserInterfaceCommand
     {
-        public int MenuLevel { get; set; }
-
-        public BaseUserInterfaceCommand(int menuLevel)
-        {
-            MenuLevel = menuLevel;
-        }
+        public int MenuLevel { get; set; } = 1;
 
         public virtual Task ExecuteAsync()
         {

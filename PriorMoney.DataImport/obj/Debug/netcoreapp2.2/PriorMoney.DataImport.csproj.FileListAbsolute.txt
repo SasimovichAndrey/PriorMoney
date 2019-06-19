@@ -22,3 +22,15 @@ f:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.DataImport\obj\Debug\netcore
 f:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.DataImport\obj\Debug\netcoreapp2.2\PriorMoney.DataImport.csproj.CopyComplete
 f:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.DataImport\obj\Debug\netcoreapp2.2\PriorMoney.DataImport.dll
 f:\Projects\dotNet\PriorMoney.DataImport\PriorMoney.DataImport\obj\Debug\netcoreapp2.2\PriorMoney.DataImport.pdb
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.DataImport\bin\Debug\netcoreapp2.2\PriorMoney.DataImport.deps.json
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.DataImport\bin\Debug\netcoreapp2.2\PriorMoney.DataImport.dll
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.DataImport\bin\Debug\netcoreapp2.2\PriorMoney.DataImport.pdb
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.DataImport\bin\Debug\netcoreapp2.2\PriorMoney.Model.dll
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.DataImport\bin\Debug\netcoreapp2.2\PriorMoney.Model.pdb
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.DataImport\obj\Debug\netcoreapp2.2\PriorMoney.DataImport.csprojAssemblyReference.cache
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.DataImport\obj\Debug\netcoreapp2.2\PriorMoney.DataImport.csproj.CoreCompileInputs.cache
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.DataImport\obj\Debug\netcoreapp2.2\PriorMoney.DataImport.AssemblyInfoInputs.cache
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.DataImport\obj\Debug\netcoreapp2.2\PriorMoney.DataImport.AssemblyInfo.cs
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.DataImport\obj\Debug\netcoreapp2.2\PriorMoney.DataImport.csproj.CopyComplete
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.DataImport\obj\Debug\netcoreapp2.2\PriorMoney.DataImport.dll
+C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.DataImport\obj\Debug\netcoreapp2.2\PriorMoney.DataImport.pdb

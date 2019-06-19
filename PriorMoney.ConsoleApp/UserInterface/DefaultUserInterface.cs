@@ -4,20 +4,31 @@ using System.Collections.Generic;
 using PriorMoney.ConsoleApp.UserInterface.Commands;
 using System.Linq;
 using PriorMoney.DataImport.CsvImport;
+using PriorMoney.Utils;
 
 namespace PriorMoney.ConsoleApp.UserInterface
 {
     public class DefaultUserInterface : IConsoleAppUserInterface
     {
         private List<ValueTuple<IUserInterfaceCommand, string>> _commands;
+        private readonly IServiceProvider _serviceProvider;
 
-        public DefaultUserInterface()
+        public DefaultUserInterface(IServiceProvider serviceProvider)
         {
+            _serviceProvider = serviceProvider;
+
+            var menuLevel = 1;
             _commands = new List<ValueTuple<IUserInterfaceCommand, string>>();
 
-            var dataFolderPath = @"C:\Users\asasimovich\source\projects\PriorMoney\PriorMoney.ConsoleApp\TestDataFolder";
-            _commands.Add((new ImportCardOperationsCommand(1, new FileSystemOperationsLoader(dataFolderPath, new CsvCardOperationParser(), new DefaultReportFileChoseStrategy()), new CardOperationStringView()), "Импорт операций"));
-            _commands.Add((new ExitCurrentMenuCommand(1), "Выход"));
+            var importCardOperationsCommand = _serviceProvider.GetService<ImportCardOperationsCommand>();
+            importCardOperationsCommand.MenuLevel = menuLevel;
+            _commands.Add((importCardOperationsCommand, "Импорт операций"));
+
+            var exitCurrentMenuCommand = _serviceProvider.GetService<ExitCurrentMenuCommand>();
+            exitCurrentMenuCommand.MenuLevel = menuLevel;
+            _commands.Add((exitCurrentMenuCommand, "Выход"));
+
+            _serviceProvider = serviceProvider;
         }
 
         public async Task StartAsync()

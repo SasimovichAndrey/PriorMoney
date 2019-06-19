@@ -10,7 +10,7 @@ namespace PriorMoney.ConsoleApp.UserInterface.Commands
         private readonly CardOperation _operation;
         private readonly IModelStringView<CardOperation> _operationStringView;
 
-        public EditCardOperationUserInterfaceCommand(int menuLevel, CardOperation operation, IModelStringView<CardOperation> operationStringView) : base(menuLevel)
+        public EditCardOperationUserInterfaceCommand(int menuLevel, CardOperation operation, IModelStringView<CardOperation> operationStringView)
         {
             this._operation = operation;
             this._operationStringView = operationStringView;

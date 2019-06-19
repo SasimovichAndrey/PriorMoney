@@ -13,10 +13,9 @@ namespace PriorMoney.ConsoleApp.UserInterface.Commands
         private readonly ICardOperationsLoader _operationsImporter;
         private readonly IModelStringView<CardOperation> _cardOperationView;
 
-        public ImportCardOperationsCommand(int menuLevel, ICardOperationsLoader cardOperationsImporter,
-            IModelStringView<CardOperation> cardOperationView) : base(menuLevel)
+        public ImportCardOperationsCommand(ICardOperationsLoader cardOperationsImporter,
+            IModelStringView<CardOperation> cardOperationView)
         {
-            MenuLevel = menuLevel;
             _operationsImporter = cardOperationsImporter;
             _cardOperationView = cardOperationView;
         }

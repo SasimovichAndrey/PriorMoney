@@ -12,7 +12,7 @@ namespace PriorMoney.DataImport.Tests
     public class CsvCardOperationImporterTests
     {
         private string _csvString;
-        private ICarOperationParser _parser;
+        private ICardOperationParser _parser;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
