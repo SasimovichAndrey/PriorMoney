@@ -48,7 +48,11 @@ namespace PriorMoney.ConsoleApp.UserInterface.Commands
             List<CardOperation> operationsToSaveToStorage = operations.ToList();
             do
             {
-                if (!AskUserIfEditIsNeeded()) break;
+                if (!AskUserIfEditIsNeeded())
+                {
+                    operationsToSaveToStorage.ForEach(op => op.UserDefinedName = op.OriginalName);
+                    break;
+                }
 
                 operationsToSaveToStorage = new List<CardOperation>();
                 foreach (var operation in operations)

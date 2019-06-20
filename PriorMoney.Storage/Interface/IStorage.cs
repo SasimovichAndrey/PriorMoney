@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace PriorMoney.Storage.Interface
 {
     public interface IStorage<T>
     {
-        void Add(T entity);
+        Task Add(T entity);
 
-        void AddMany(IEnumerable<T> entities);
+        Task AddMany(IEnumerable<T> entities);
 
-        T Get(Guid id);
-        List<T> Get(Expression<Func<T, bool>> where);
+        Task<T> Get(Guid id);
+        Task<List<T>> Get(Expression<Func<T, bool>> where);
     }
 }

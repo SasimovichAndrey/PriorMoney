@@ -17,18 +17,25 @@ namespace PriorMoney.ConsoleApp.UserInterface
         {
             _serviceProvider = serviceProvider;
 
-            var menuLevel = 1;
+            InitlizeCommandList(menuLevel: 1);
+        }
+
+        private void InitlizeCommandList(int menuLevel)
+        {
             _commands = new List<ValueTuple<IUserInterfaceCommand, string>>();
 
             var importCardOperationsCommand = _serviceProvider.GetService<ImportCardOperationsCommand>();
             importCardOperationsCommand.MenuLevel = menuLevel;
             _commands.Add((importCardOperationsCommand, "Импорт операций"));
 
+            var showOperationsMenuCommand = _serviceProvider.GetService<ShowOperationsCommand>();
+            showOperationsMenuCommand.MenuLevel = menuLevel;
+            _commands.Add((showOperationsMenuCommand, "Показать операции за месяц"));
+
             var exitCurrentMenuCommand = _serviceProvider.GetService<ExitCurrentMenuCommand>();
             exitCurrentMenuCommand.MenuLevel = menuLevel;
             _commands.Add((exitCurrentMenuCommand, "Выход"));
 
-            _serviceProvider = serviceProvider;
         }
 
         public async Task StartAsync()

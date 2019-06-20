@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading.Tasks;
 using MongoDB.Driver;
 
 namespace PriorMoney.Storage.Mongo.Storage
@@ -15,30 +16,32 @@ namespace PriorMoney.Storage.Mongo.Storage
             this._database = database;
         }
 
-        public void Add(T entity)
+        public async Task Add(T entity)
         {
             var collection = GetCollection();
 
-            collection.InsertOne(entity);
+            await collection.InsertOneAsync(entity);
         }
 
-        public void AddMany(IEnumerable<T> entities)
+        public async Task AddMany(IEnumerable<T> entities)
         {
             var collection = GetCollection();
 
-            collection.InsertMany(entities);
+            await collection.InsertManyAsync(entities);
         }
 
-        public T Get(Guid id)
+        public async Task<T> Get(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public List<T> Get(Expression<Func<T, bool>> where)
+        public async Task<List<T>> Get(Expression<Func<T, bool>> where)
         {
-            throw new NotImplementedException();
+            var collection = await GetCollection().FindAsync(where);
+
+            return collection.ToList();
         }
-        
+
         protected IMongoCollection<T> GetCollection()
         {
             var collection = _database.GetCollection<T>(GetCollectionName());
