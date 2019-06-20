@@ -1,5 +1,7 @@
-﻿using PriorMoney.DataImport.Interface;
+﻿using PriorMoney.DataImport.CsvImport.Parsers;
+using PriorMoney.DataImport.Interface;
 using PriorMoney.Model;
+using PriorMoney.Utils.Models;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -11,6 +13,13 @@ namespace PriorMoney.DataImport.CsvImport
 {
     public class CsvCardOperationParser : ICardOperationParser
     {
+        private readonly IDateRangeParser _dateRangeParser;
+
+        public CsvCardOperationParser(IDateRangeParser dateRangeParser)
+        {
+            _dateRangeParser = dateRangeParser;
+        }
+
         public CardOperation[] Parse(string csvStringToImportFrom)
         {
             List<CardOperation> operations = new List<CardOperation>();
@@ -18,12 +27,20 @@ namespace PriorMoney.DataImport.CsvImport
             GetReleasedOperations(operations, csvStringToImportFrom);
             GetBlockedOperations(operations, csvStringToImportFrom);
 
+            var reportPeriod = GetReportPeriod(csvStringToImportFrom);
+            operations = operations.Where(op => op.DateTime >= reportPeriod.StartDate && op.DateTime <= reportPeriod.EndDate).ToList();
+
             return operations.ToArray();
+        }
+
+        private DateRange GetReportPeriod(string csvStringToImportFrom)
+        {
+            return _dateRangeParser.Parse(csvStringToImportFrom);
         }
 
         private void GetBlockedOperations(List<CardOperation> operations, string csvStringToImportFrom)
         {
-                        // Get string blocks from csv string that contain operations info
+            // Get string blocks from csv string that contain operations info
             var operationLineBlockRegex = new Regex(@"Заблокированные суммы по.*\n((.*\n)*)");
             var operationLineBlockMatches = operationLineBlockRegex.Matches(csvStringToImportFrom);
 
@@ -56,7 +73,7 @@ namespace PriorMoney.DataImport.CsvImport
                         var newCardOperation = new CardOperation();
                         newCardOperation.DateTime = DateTime.ParseExact(cells[0], "dd.MM.yyyy HH:mm:ss", null);
                         newCardOperation.OriginalName = cells[1];
-                        newCardOperation.Amount = decimal.Parse(cells[2].Replace(',', '.'));
+                        newCardOperation.Amount = -decimal.Parse(cells[2].Replace(',', '.'));
                         newCardOperation.Currency = Enum.Parse<Currency>(cells[3]);
 
                         operations.Add(newCardOperation);

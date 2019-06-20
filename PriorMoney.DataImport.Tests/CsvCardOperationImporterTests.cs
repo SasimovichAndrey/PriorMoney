@@ -1,7 +1,9 @@
 ﻿using NUnit.Framework;
 using PriorMoney.DataImport.CsvImport;
+using PriorMoney.DataImport.CsvImport.Parsers;
 using PriorMoney.DataImport.Interface;
 using PriorMoney.Model;
+using PriorMoney.Utils.Models;
 using System;
 using System.IO;
 using System.Text;
@@ -29,7 +31,7 @@ namespace PriorMoney.DataImport.Tests
         [SetUp]
         public void SetUp()
         {
-            _parser = new CsvCardOperationParser();
+            _parser = new CsvCardOperationParser(new DateRangeParserMock(new DateRange() { StartDate = new DateTime(2019, 6, 20), EndDate = new DateTime(2019, 6, 20, 23, 59, 59) }));
         }
 
         [Test]
@@ -41,43 +43,43 @@ namespace PriorMoney.DataImport.Tests
                 {
                     Amount = 0.37m,
                     Currency = Currency.BYN,
-                    DateTime = new DateTime(2019, 5,31),
-                    UserDefinedName = "Поступление на контракт клиента 749103-00081-044753  "
+                    DateTime = new DateTime(2019, 6,20),
+                    OriginalName = "Поступление на контракт клиента 749103-00081-044753  "
                 },
                 new CardOperation
                 {
                     Amount = 100m,
                     Currency = Currency.BYN,
-                    DateTime = new DateTime(2019, 5,23),
-                    UserDefinedName = "Поступление на контракт клиента 749103-00081-044753  "
+                    DateTime = new DateTime(2019, 6,20),
+                    OriginalName = "Поступление на контракт клиента 749103-00081-044753  "
                 },
                 new CardOperation
                 {
                     Amount = -2m,
                     Currency = Currency.BYN,
-                    DateTime = new DateTime(2019, 5,29),
-                    UserDefinedName = "Retail BLR GRODNO PT MINI KAFE TVISTER  "
+                    DateTime = new DateTime(2019, 6,20),
+                    OriginalName = "Retail BLR GRODNO PT MINI KAFE TVISTER  "
                 },
                 new CardOperation
                 {
                     Amount = -33.6m,
                     Currency = Currency.BYN,
-                    DateTime = new DateTime(2019, 5,29),
-                    UserDefinedName = "Retail BLR GRODNO AZS N 46  "
+                    DateTime = new DateTime(2019, 6,20),
+                    OriginalName = "Retail BLR GRODNO AZS N 46  "
                 },
                 new CardOperation
                 {
-                    Amount = -4.26m,
+                    Amount = -4.80m,
                     Currency = Currency.BYN,
-                    DateTime = new DateTime(2019, 5,28),
-                    UserDefinedName = "Retail BLR GRODNO SHOP \"LIMOZH\"  "
+                    DateTime = new DateTime(2019, 6,20, 20, 31,20),
+                    OriginalName = "Retail NLD AMSTERDAM YANDEX.TAXI"
                 },
                 new CardOperation
                 {
-                    Amount = -5.58m,
+                    Amount = -2.70m,
                     Currency = Currency.BYN,
-                    DateTime = new DateTime(2019, 5,28),
-                    UserDefinedName = "Retail BLR GRODNO SHOP \"LIMOZH\"  "
+                    DateTime = new DateTime(2019, 6,20, 0, 59, 27),
+                    OriginalName = "Retail NLD AMSTERDAM YANDEX.TAXI"
                 },
             };
 
@@ -89,20 +91,25 @@ namespace PriorMoney.DataImport.Tests
                 if (op1.Currency != op2.Currency) return false;
                 if (op1.DateTime != op2.DateTime) return false;
                 if (op1.UserDefinedName != op2.UserDefinedName) return false;
+                if (op1.OriginalName != op2.OriginalName) return false;
 
                 return true;
             };
             Assert.That(actualData, Is.EquivalentTo(expectedData).Using(cardOperationComparer));
         }
+    }
 
-        [Test]
-        public void BadDataTest()
+    public class DateRangeParserMock : IDateRangeParser
+    {
+        private readonly DateRange dateRange;
+
+        public DateRangeParserMock(DateRange dateRange)
         {
-            var badCsvString = "bad string";
-
-            TestDelegate importAction = () => _parser.Parse(badCsvString);
-
-            Assert.Throws<ArgumentException>(importAction);
+            this.dateRange = dateRange;
+        }
+        public DateRange Parse(string str)
+        {
+            return dateRange;
         }
     }
 }

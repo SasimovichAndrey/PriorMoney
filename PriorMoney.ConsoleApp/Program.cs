@@ -8,6 +8,7 @@ using PriorMoney.ConsoleApp.Model;
 using PriorMoney.ConsoleApp.UserInterface;
 using PriorMoney.ConsoleApp.UserInterface.Commands;
 using PriorMoney.DataImport.CsvImport;
+using PriorMoney.DataImport.CsvImport.Parsers;
 using PriorMoney.DataImport.Interface;
 using PriorMoney.Model;
 using PriorMoney.Storage.Interface;
@@ -48,6 +49,7 @@ namespace PriorMoney.ConsoleApp
             serviceCollection.AddTransient(typeof(IReportFileChoseStrategy), typeof(DefaultReportFileChoseStrategy));
             serviceCollection.AddTransient(typeof(IModelStringView<CardOperation>), typeof(CardOperationStringView));
             serviceCollection.AddTransient(typeof(ICardOperationParser), typeof(CsvCardOperationParser));
+            serviceCollection.AddTransient(typeof(IDateRangeParser), typeof(DateRangeParser));
             serviceCollection.AddTransient(typeof(ICardOperationsLoader), (provider) =>
                 new FileSystemOperationsLoader(cfg.OperationsReportsDataFolderPath,
                     provider.GetService<ICardOperationParser>(),
@@ -65,7 +67,7 @@ namespace PriorMoney.ConsoleApp
             var mongoClient = new MongoClient(cfg.MongoConnectionString);
             var db = mongoClient.GetDatabase(cfg.MongoDbName);
 
-            serviceCollection.AddSingleton(typeof(IMongoDatabase), (provider) => db );
+            serviceCollection.AddSingleton(typeof(IMongoDatabase), (provider) => db);
 
             serviceCollection.AddTransient(typeof(IStorage<CardOperation>), typeof(CardOperationStorage));
             serviceCollection.AddTransient(typeof(IStorage<CardOperationsImport>), typeof(CardOperationsImportStorage));

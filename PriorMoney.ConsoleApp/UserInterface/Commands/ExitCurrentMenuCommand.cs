@@ -8,9 +8,8 @@ namespace PriorMoney.ConsoleApp.UserInterface.Commands
         {
         }
 
-        public Task ExecuteAsync()
+        public async Task ExecuteAsync()
         {
-            return Task.FromResult<object>(null);
         }
     }
 }

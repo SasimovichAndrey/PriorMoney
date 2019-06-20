@@ -27,14 +27,16 @@ namespace PriorMoney.ConsoleApp.UserInterface.Commands
             _cardOperationsImportStorage = cardOperationsImportStorage;
         }
 
-        public async new Task ExecuteAsync()
+        public async Task ExecuteAsync()
         {
             var operations = await _operationsImporter.LoadAsync();
 
-            if(operations.Count > 0){
+            if (operations.Count > 0)
+            {
                 await ImportOperations(operations);
             }
-            else{
+            else
+            {
                 Console.WriteLine("Не найдено операций для импорта");
             }
         }
@@ -66,7 +68,8 @@ namespace PriorMoney.ConsoleApp.UserInterface.Commands
 
         private CardOperationsImport SaveImportToStorage()
         {
-            var newImport = new CardOperationsImport{
+            var newImport = new CardOperationsImport
+            {
                 Date = DateTime.Now
             };
 

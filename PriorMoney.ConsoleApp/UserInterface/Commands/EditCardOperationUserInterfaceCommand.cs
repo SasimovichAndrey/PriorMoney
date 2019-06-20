@@ -16,7 +16,7 @@ namespace PriorMoney.ConsoleApp.UserInterface.Commands
             this._operationStringView = operationStringView;
         }
 
-        public new Task<CardOperation> ExecuteAsync()
+        public Task<CardOperation> ExecuteAsync()
         {
             Console.WriteLine($"Операция: {_operationStringView.GetView(_operation)}");
 
