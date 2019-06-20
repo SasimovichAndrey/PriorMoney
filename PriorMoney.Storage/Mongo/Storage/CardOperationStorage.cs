@@ -7,25 +7,15 @@ using PriorMoney.Storage.Interface;
 
 namespace PriorMoney.Storage.Mongo.Storage
 {
-    public class CardOperationStorage : BaseStorage, IStorage<CardOperation>
+    public class CardOperationStorage : BaseStorage<CardOperation>, IStorage<CardOperation>
     {
-        public CardOperationStorage(MongoClient client) : base(client)
+        public CardOperationStorage(IMongoDatabase database) : base(database)
         {
         }
-
-        public void Add(CardOperation entity)
+        
+        protected override string GetCollectionName()
         {
-            throw new NotImplementedException();
-        }
-
-        public CardOperation Get(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<CardOperation> Get(Expression<Func<CardOperation, bool>> where)
-        {
-            throw new NotImplementedException();
+            return "CardOperations";
         }
     }
 }

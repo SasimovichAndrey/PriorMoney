@@ -8,7 +8,7 @@ namespace PriorMoney.DataImport.CsvImport
     {
         public FileSystemInfo Chose(DirectoryInfo directory)
         {
-            return directory.GetFileSystemInfos().First();
+            return directory.GetFileSystemInfos().FirstOrDefault(f => !Path.GetFileNameWithoutExtension(f.Name).EndsWith("_imported"));
         }
     }
 }

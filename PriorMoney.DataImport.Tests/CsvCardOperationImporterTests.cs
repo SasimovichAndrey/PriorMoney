@@ -42,42 +42,42 @@ namespace PriorMoney.DataImport.Tests
                     Amount = 0.37m,
                     Currency = Currency.BYN,
                     DateTime = new DateTime(2019, 5,31),
-                    Name = "Поступление на контракт клиента 749103-00081-044753  "
+                    UserDefinedName = "Поступление на контракт клиента 749103-00081-044753  "
                 },
                 new CardOperation
                 {
                     Amount = 100m,
                     Currency = Currency.BYN,
                     DateTime = new DateTime(2019, 5,23),
-                    Name = "Поступление на контракт клиента 749103-00081-044753  "
+                    UserDefinedName = "Поступление на контракт клиента 749103-00081-044753  "
                 },
                 new CardOperation
                 {
                     Amount = -2m,
                     Currency = Currency.BYN,
                     DateTime = new DateTime(2019, 5,29),
-                    Name = "Retail BLR GRODNO PT MINI KAFE TVISTER  "
+                    UserDefinedName = "Retail BLR GRODNO PT MINI KAFE TVISTER  "
                 },
                 new CardOperation
                 {
                     Amount = -33.6m,
                     Currency = Currency.BYN,
                     DateTime = new DateTime(2019, 5,29),
-                    Name = "Retail BLR GRODNO AZS N 46  "
+                    UserDefinedName = "Retail BLR GRODNO AZS N 46  "
                 },
                 new CardOperation
                 {
                     Amount = -4.26m,
                     Currency = Currency.BYN,
                     DateTime = new DateTime(2019, 5,28),
-                    Name = "Retail BLR GRODNO SHOP \"LIMOZH\"  "
+                    UserDefinedName = "Retail BLR GRODNO SHOP \"LIMOZH\"  "
                 },
                 new CardOperation
                 {
                     Amount = -5.58m,
                     Currency = Currency.BYN,
                     DateTime = new DateTime(2019, 5,28),
-                    Name = "Retail BLR GRODNO SHOP \"LIMOZH\"  "
+                    UserDefinedName = "Retail BLR GRODNO SHOP \"LIMOZH\"  "
                 },
             };
 
@@ -88,7 +88,7 @@ namespace PriorMoney.DataImport.Tests
                 if (op1.Amount != op2.Amount) return false;
                 if (op1.Currency != op2.Currency) return false;
                 if (op1.DateTime != op2.DateTime) return false;
-                if (op1.Name != op2.Name) return false;
+                if (op1.UserDefinedName != op2.UserDefinedName) return false;
 
                 return true;
             };

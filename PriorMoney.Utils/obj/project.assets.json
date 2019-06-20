@@ -51,7 +51,7 @@
   },
   "libraries": {
     "Microsoft.Extensions.DependencyInjection/2.2.0": {
-      "sha512": "7JzIJyfA1Wr19ibRr67CoG3lFklnTkzhkJ6thWFcNrmZCgLf9oEqrED4Tz08y7F18wTWsWUnI52BCjraBGtPIA==",
+      "sha512": "MZtBIwfDFork5vfjpJdG5g8wuJFt7d/y3LOSVVtDK/76wlbtz6cjltfKHqLx2TKVqTj5/c41t77m1+h20zqtPA==",
       "type": "package",
       "path": "microsoft.extensions.dependencyinjection/2.2.0",
       "files": [
@@ -68,7 +68,7 @@
       ]
     },
     "Microsoft.Extensions.DependencyInjection.Abstractions/2.2.0": {
-      "sha512": "YZcHF0/+XeKv12ZEo+OmrAa6rNayjye0qvEjYSDIhN99StqxnS2gZpwkcCrH/8JuXxzzcDSVpZw5Bruz8xYfXQ==",
+      "sha512": "f9hstgjVmr6rmrfGSpfsVOl2irKAgr1QjrSi3FgnS7kulxband50f2brRLwySAQTADPZeTdow0mpSMcoAdadCw==",
       "type": "package",
       "path": "microsoft.extensions.dependencyinjection.abstractions/2.2.0",
       "files": [
@@ -81,12 +81,11 @@
       ]
     },
     "Microsoft.NETCore.Platforms/1.1.0": {
-      "sha512": "kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
+      "sha512": "kUO88lTyQOwxPPKSNB6J6Df4siEF4LtI8+XOgr3BwBlEZN1ROLUFl7qhaN9qc6uskdb8Sac0tu2gEWRJ+2fRMg==",
       "type": "package",
       "path": "microsoft.netcore.platforms/1.1.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/netstandard1.0/_._",
@@ -231,23 +230,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\asasimovich\\.nuget\\packages\\": {},
+    "C:\\Users\\Andrei Sasimovich\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\asasimovich\\source\\projects\\PriorMoney\\PriorMoney.Utils\\PriorMoney.Utils.csproj",
+      "projectUniqueName": "F:\\Projects\\dotNet\\PriorMoney.DataImport\\PriorMoney.Utils\\PriorMoney.Utils.csproj",
       "projectName": "PriorMoney.Utils",
-      "projectPath": "C:\\Users\\asasimovich\\source\\projects\\PriorMoney\\PriorMoney.Utils\\PriorMoney.Utils.csproj",
-      "packagesPath": "C:\\Users\\asasimovich\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\asasimovich\\source\\projects\\PriorMoney\\PriorMoney.Utils\\obj\\",
+      "projectPath": "F:\\Projects\\dotNet\\PriorMoney.DataImport\\PriorMoney.Utils\\PriorMoney.Utils.csproj",
+      "packagesPath": "C:\\Users\\Andrei Sasimovich\\.nuget\\packages\\",
+      "outputPath": "F:\\Projects\\dotNet\\PriorMoney.DataImport\\PriorMoney.Utils\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\asasimovich\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Andrei Sasimovich\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -255,7 +254,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\report server\\report-server\\ReportsServer\\Nuspec": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

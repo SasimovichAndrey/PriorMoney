@@ -5,6 +5,8 @@ using PriorMoney.DataImport.Interface;
 using PriorMoney.Model;
 using System.Linq;
 using System.Text;
+using PriorMoney.Storage.Interface;
+using System;
 
 namespace PriorMoney.DataImport.CsvImport
 {
@@ -14,7 +16,9 @@ namespace PriorMoney.DataImport.CsvImport
         private readonly ICardOperationParser _cardOperationParser;
         private readonly IReportFileChoseStrategy _fileChoseStrategy;
 
-        public FileSystemOperationsLoader(string dataFolderPath, ICardOperationParser cardOperationParser, IReportFileChoseStrategy fileChoseStrategy)
+        public FileSystemOperationsLoader(string dataFolderPath,
+            ICardOperationParser cardOperationParser, 
+            IReportFileChoseStrategy fileChoseStrategy)
         {
             _dataFolderPath = dataFolderPath;
             _cardOperationParser = cardOperationParser;
@@ -26,12 +30,29 @@ namespace PriorMoney.DataImport.CsvImport
             var dataDir = new DirectoryInfo(_dataFolderPath);
             var file = _fileChoseStrategy.Chose(dataDir);
 
-            using (var reader = new StreamReader(file.FullName, Encoding.GetEncoding(1251)))
-            {
-                var fileText = await reader.ReadToEndAsync();
-                var parsed = _cardOperationParser.Parse(fileText);
+            if(file != null){
+                CardOperation[] parsed;
+                using (var reader = new StreamReader(file.FullName, Encoding.GetEncoding(1251)))
+                {
+                    var fileText = await reader.ReadToEndAsync();
+                    parsed = _cardOperationParser.Parse(fileText);
+
+                }
+
+                MarkImportFileAsProcessed(file);
+                    
                 return parsed.ToList();
             }
+            else{
+                return new List<CardOperation>();
+            }
+        }
+
+        private void MarkImportFileAsProcessed(FileSystemInfo file)
+        {
+            var newFileName = Path.Combine(Path.GetDirectoryName(file.FullName),
+                Path.GetFileNameWithoutExtension(file.FullName) + "_imported" + Path.GetExtension(file.FullName)); 
+            File.Move(file.FullName, newFileName);
         }
     }
 }

@@ -3,12 +3,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MongoDB.Driver;
 using PriorMoney.ConsoleApp.Model;
 using PriorMoney.ConsoleApp.UserInterface;
 using PriorMoney.ConsoleApp.UserInterface.Commands;
 using PriorMoney.DataImport.CsvImport;
 using PriorMoney.DataImport.Interface;
 using PriorMoney.Model;
+using PriorMoney.Storage.Interface;
+using PriorMoney.Storage.Mongo.Storage;
 
 namespace PriorMoney.ConsoleApp
 {
@@ -35,8 +38,12 @@ namespace PriorMoney.ConsoleApp
         {
             // init app
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            Console.OutputEncoding = Encoding.Default;
+            Console.InputEncoding = Encoding.GetEncoding(1251);
 
             var serviceCollection = new ServiceCollection();
+
+            RegisterMongo(cfg, serviceCollection);
 
             serviceCollection.AddTransient(typeof(IReportFileChoseStrategy), typeof(DefaultReportFileChoseStrategy));
             serviceCollection.AddTransient(typeof(IModelStringView<CardOperation>), typeof(CardOperationStringView));
@@ -53,6 +60,17 @@ namespace PriorMoney.ConsoleApp
             return serviceProvider;
         }
 
+        private static void RegisterMongo(ConsoleAppConfig cfg, IServiceCollection serviceCollection)
+        {
+            var mongoClient = new MongoClient(cfg.MongoConnectionString);
+            var db = mongoClient.GetDatabase(cfg.MongoDbName);
+
+            serviceCollection.AddSingleton(typeof(IMongoDatabase), (provider) => db );
+
+            serviceCollection.AddTransient(typeof(IStorage<CardOperation>), typeof(CardOperationStorage));
+            serviceCollection.AddTransient(typeof(IStorage<CardOperationsImport>), typeof(CardOperationsImportStorage));
+        }
+
         private static ConsoleAppConfig ReadConfig()
         {
             IConfiguration jsonConfig = new ConfigurationBuilder()
@@ -62,6 +80,8 @@ namespace PriorMoney.ConsoleApp
             var cfg = new ConsoleAppConfig();
 
             cfg.OperationsReportsDataFolderPath = jsonConfig["OperationsReportsDataFolderPath"];
+            cfg.MongoConnectionString = jsonConfig["MongoConnectionString"];
+            cfg.MongoDbName = jsonConfig["MongoDbName"];
 
             return cfg;
         }

@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PriorMoney.Model\PriorMoney.Model.csproj" />
+    <ProjectReference Include="..\PriorMoney.Storage\PriorMoney.Storage.csproj" />
   </ItemGroup>
 
 </Project>

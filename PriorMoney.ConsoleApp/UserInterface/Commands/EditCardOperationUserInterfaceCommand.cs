@@ -24,7 +24,7 @@ namespace PriorMoney.ConsoleApp.UserInterface.Commands
             if (ConsoleExtensions.AskYesNo("Редактировать?"))
             {
 
-                EditProperty("Имя операции", _operation.Name, (value) => { newOperation.Name = value; });
+                EditProperty("Имя операции", _operation.OriginalName, (value) => { newOperation.UserDefinedName = value; });
                 EditProperty("Дата", _operation.DateTime, (value) => { DateTime parsedValue; if (DateTime.TryParse(value, out parsedValue)) newOperation.DateTime = parsedValue; });
                 EditProperty("Потрачено / получено", _operation.Amount, (value) => { decimal parsedValue; if (decimal.TryParse(value, out parsedValue)) newOperation.Amount = parsedValue; });
 
@@ -32,6 +32,7 @@ namespace PriorMoney.ConsoleApp.UserInterface.Commands
             }
             else
             {
+                newOperation.UserDefinedName = _operation.OriginalName;
                 return Task.FromResult(newOperation);
             }
         }

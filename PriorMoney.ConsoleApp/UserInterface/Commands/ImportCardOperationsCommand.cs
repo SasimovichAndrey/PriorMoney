@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using PriorMoney.ConsoleApp.UserInterface.Tools;
 using PriorMoney.DataImport.Interface;
 using PriorMoney.Model;
+using PriorMoney.Storage.Interface;
 
 namespace PriorMoney.ConsoleApp.UserInterface.Commands
 {
@@ -12,18 +13,34 @@ namespace PriorMoney.ConsoleApp.UserInterface.Commands
     {
         private readonly ICardOperationsLoader _operationsImporter;
         private readonly IModelStringView<CardOperation> _cardOperationView;
+        private readonly IStorage<CardOperation> _cardOperationStorage;
+        private readonly IStorage<CardOperationsImport> _cardOperationsImportStorage;
 
         public ImportCardOperationsCommand(ICardOperationsLoader cardOperationsImporter,
-            IModelStringView<CardOperation> cardOperationView)
+            IModelStringView<CardOperation> cardOperationView,
+            IStorage<CardOperation> cardOperationStorage,
+            IStorage<CardOperationsImport> cardOperationsImportStorage)
         {
             _operationsImporter = cardOperationsImporter;
             _cardOperationView = cardOperationView;
+            _cardOperationStorage = cardOperationStorage;
+            _cardOperationsImportStorage = cardOperationsImportStorage;
         }
 
         public async new Task ExecuteAsync()
         {
             var operations = await _operationsImporter.LoadAsync();
 
+            if(operations.Count > 0){
+                await ImportOperations(operations);
+            }
+            else{
+                Console.WriteLine("Не найдено операций для импорта");
+            }
+        }
+
+        private async Task ImportOperations(List<CardOperation> operations)
+        {
             RenderOperationsInfo(operations);
 
             List<CardOperation> operationsToSaveToStorage = operations.ToList();
@@ -43,12 +60,26 @@ namespace PriorMoney.ConsoleApp.UserInterface.Commands
                 RenderOperationsInfo(operationsToSaveToStorage);
             } while (true);
 
-            SaveOperationsToStorage(operations);
+            var import = SaveImportToStorage();
+            SaveOperationsToStorage(operationsToSaveToStorage, import);
         }
 
-        private void SaveOperationsToStorage(List<CardOperation> operations)
+        private CardOperationsImport SaveImportToStorage()
         {
-            throw new NotImplementedException();
+            var newImport = new CardOperationsImport{
+                Date = DateTime.Now
+            };
+
+            _cardOperationsImportStorage.Add(newImport);
+
+            return newImport;
+        }
+
+        private void SaveOperationsToStorage(List<CardOperation> operations, CardOperationsImport import)
+        {
+            operations.ForEach(op => op.ImportId = import.Id);
+
+            _cardOperationStorage.AddMany(operations);
         }
 
         private void RenderOperationsInfo(List<CardOperation> operations)
