@@ -97,6 +97,20 @@ namespace PriorMoney.DataImport.Tests
             };
             Assert.That(actualData, Is.EquivalentTo(expectedData).Using(cardOperationComparer));
         }
+
+        [Test]
+        public void TestDateRangeParser()
+        {
+            var parser = new DateRangeParser();
+            var expected = new DateRange
+            {
+                StartDate = new DateTime(2019, 4, 30, 0, 0, 0),
+                EndDate = new DateTime(2019, 5, 31, 23, 59, 59)
+            };
+            var actual = parser.Parse(_csvString);
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
     }
 
     public class DateRangeParserMock : IDateRangeParser
