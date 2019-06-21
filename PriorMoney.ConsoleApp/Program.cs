@@ -39,8 +39,13 @@ namespace PriorMoney.ConsoleApp
 
         private static ConsoleAppConfig ReadConfig()
         {
+#if DEBUG
+            var cfgFileName = "appsettings.json";
+#else
+            var cfgFileName = "appsettings.Release.json";
+#endif
             IConfiguration jsonConfig = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json", true, true)
+                .AddJsonFile(cfgFileName, true, true)
                 .Build();
 
             var cfg = new ConsoleAppConfig();
