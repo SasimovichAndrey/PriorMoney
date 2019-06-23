@@ -73,12 +73,22 @@ namespace PriorMoney.DataImport.CsvImport
                         var newCardOperation = new CardOperation();
                         newCardOperation.DateTime = DateTime.ParseExact(cells[0], "dd.MM.yyyy HH:mm:ss", null);
                         newCardOperation.OriginalName = cells[1];
-                        newCardOperation.Amount = -decimal.Parse(cells[2].Replace(',', '.'));
+                        newCardOperation.Amount = -ParseDecimal(cells[2]);
                         newCardOperation.Currency = Enum.Parse<Currency>(cells[3]);
 
                         operations.Add(newCardOperation);
                     }
                 }
+            }
+        }
+
+        private decimal ParseDecimal(string str){
+            try{
+               return decimal.Parse(str.Replace(',', '.').Replace(" ", ""));
+            }
+            catch{
+                Console.WriteLine($"Can't parse decimal value '{str}'");
+                throw;   
             }
         }
 
@@ -117,7 +127,7 @@ namespace PriorMoney.DataImport.CsvImport
                         var newCardOperation = new CardOperation();
                         newCardOperation.DateTime = DateTime.ParseExact(cells[0], "dd.MM.yyyy HH:mm:ss", null);
                         newCardOperation.OriginalName = cells[1];
-                        newCardOperation.Amount = decimal.Parse(cells[2].Replace(',', '.'));
+                        newCardOperation.Amount = ParseDecimal(cells[2]);
                         newCardOperation.Currency = Enum.Parse<Currency>(cells[3]);
 
                         operations.Add(newCardOperation);

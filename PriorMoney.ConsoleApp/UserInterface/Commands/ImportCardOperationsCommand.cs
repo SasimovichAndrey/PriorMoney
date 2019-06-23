@@ -50,7 +50,7 @@ namespace PriorMoney.ConsoleApp.UserInterface.Commands
             {
                 if (!AskUserIfEditIsNeeded())
                 {
-                    operationsToSaveToStorage.ForEach(op => op.UserDefinedName = op.OriginalName);
+                    operationsToSaveToStorage.ForEach(op => op.UserDefinedName = op.UserDefinedName ?? op.OriginalName);
                     break;
                 }
 

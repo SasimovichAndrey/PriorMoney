@@ -6,8 +6,13 @@ namespace PriorMoney.ConsoleApp.UserInterface.Tools
     {
         public static bool AskYesNo(string question)
         {
-            Console.Write($"{question} (y/n) ");
-            var userInput = Console.ReadKey().KeyChar;
+            
+            var userInput = ' ';
+            while(userInput != 'y' && userInput !='n'){
+
+                Console.Write($"{question} (y/n) ");
+                userInput = Console.ReadKey().KeyChar;
+            }
 
             Console.WriteLine();
             return userInput == 'y';
