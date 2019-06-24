@@ -51,7 +51,7 @@ namespace PriorMoney.DataImport.CsvImport
         private void MarkImportFileAsProcessed(FileSystemInfo file)
         {
             var newFileName = Path.Combine(Path.GetDirectoryName(file.FullName),
-                Path.GetFileNameWithoutExtension(file.FullName) + "_imported" + Path.GetExtension(file.FullName)); 
+                DateTime.Now.ToString("ddMMyyyy_hhmmss") + "_imported" + Path.GetExtension(file.FullName)); 
             File.Move(file.FullName, newFileName);
         }
     }
