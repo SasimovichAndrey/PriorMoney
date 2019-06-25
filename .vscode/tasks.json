@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/PriorMoney.DataImport.Tests/PriorMoney.DataImport.Tests.csproj"
+                "${workspaceFolder}/PriorMoney.ConsoleApp/PriorMoney.ConsoleApp.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

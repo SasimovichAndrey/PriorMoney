@@ -5,6 +5,7 @@ using PriorMoney.ConsoleApp.UserInterface.Commands;
 using System.Linq;
 using PriorMoney.DataImport.CsvImport;
 using PriorMoney.Utils;
+using PriorMoney.ConsoleApp.UserInterface.CommandDecorators;
 
 namespace PriorMoney.ConsoleApp.UserInterface
 {
@@ -26,11 +27,11 @@ namespace PriorMoney.ConsoleApp.UserInterface
 
             var importCardOperationsCommand = _serviceProvider.GetService<ImportCardOperationsCommand>();
             importCardOperationsCommand.MenuLevel = menuLevel;
-            _commands.Add((importCardOperationsCommand, "Импорт операций"));
+            _commands.Add((new EmptyLineCommandDecorator(importCardOperationsCommand, false, true), "Импорт операций"));
 
             var showOperationsMenuCommand = _serviceProvider.GetService<ShowOperationsCommand>();
             showOperationsMenuCommand.MenuLevel = menuLevel;
-            _commands.Add((showOperationsMenuCommand, "Показать операции за месяц"));
+            _commands.Add((new EmptyLineCommandDecorator(showOperationsMenuCommand, false, true), "Показать операции за месяц"));
 
             var exitCurrentMenuCommand = _serviceProvider.GetService<ExitCurrentMenuCommand>();
             exitCurrentMenuCommand.MenuLevel = menuLevel;
