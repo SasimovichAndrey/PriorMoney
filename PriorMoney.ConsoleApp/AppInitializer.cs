@@ -39,6 +39,7 @@ namespace PriorMoney.ConsoleApp
             serviceCollection.AddTransient(typeof(ExitCurrentMenuCommand), typeof(ExitCurrentMenuCommand));
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
+            serviceCollection.AddSingleton(typeof(IServiceProvider), serviceProvider);
 
             return serviceProvider;
         }

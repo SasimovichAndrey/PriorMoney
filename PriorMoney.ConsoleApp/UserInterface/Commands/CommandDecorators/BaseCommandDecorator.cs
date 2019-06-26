@@ -8,7 +8,5 @@ namespace PriorMoney.ConsoleApp.UserInterface.CommandDecorators
         {
             _command = command;
         }
-
-        public int MenuLevel { get => _command.MenuLevel; set => _command.MenuLevel = value; }
     }
 }

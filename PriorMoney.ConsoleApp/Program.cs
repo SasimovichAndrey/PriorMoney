@@ -31,8 +31,8 @@ namespace PriorMoney.ConsoleApp
 
         private async static Task StartUserInterfaceAsync(IServiceProvider serviceProvider)
         {
-            IConsoleAppUserInterface userInterface = new DefaultUserInterface(serviceProvider);
-            await userInterface.StartAsync();
+            IUserInterfaceCommand initialUserInterfaceCommand = new DefaultUserInterface(serviceProvider);
+            await initialUserInterfaceCommand.ExecuteAsync();
         }
 
 
