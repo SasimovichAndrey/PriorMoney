@@ -46,7 +46,7 @@ namespace PriorMoney.ConsoleApp.UserInterface.Commands
             RenderOperationsInfo(operations);
 
             List<CardOperation> operationsToSaveToStorage = operations.ToList();
-            do
+            while (true)
             {
                 if (!AskUserIfEditIsNeeded())
                 {
@@ -54,17 +54,17 @@ namespace PriorMoney.ConsoleApp.UserInterface.Commands
                     break;
                 }
 
-                operationsToSaveToStorage = new List<CardOperation>();
-                foreach (var operation in operations)
+                for (var i = 0; i < operationsToSaveToStorage.Count; i++)
                 {
+                    var operation = operationsToSaveToStorage[i];
                     var editOpearationCommand = new EditCardOperationUserInterfaceCommand(2, operation, _cardOperationView);
                     var editedOperation = await editOpearationCommand.ExecuteAsync();
-                    operationsToSaveToStorage.Add(editedOperation);
+                    operationsToSaveToStorage[i] = editedOperation;
                 }
 
                 Console.WriteLine("Операции после редактирования:");
                 RenderOperationsInfo(operationsToSaveToStorage);
-            } while (true);
+            };
 
             var import = SaveImportToStorage();
             SaveOperationsToStorage(operationsToSaveToStorage, import);
