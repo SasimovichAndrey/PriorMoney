@@ -12,7 +12,7 @@ namespace PriorMoney.Storage.Mongo.Storage
         public CardOperationStorage(IMongoDatabase database) : base(database)
         {
         }
-        
+
         protected override string GetCollectionName()
         {
             return "CardOperations";

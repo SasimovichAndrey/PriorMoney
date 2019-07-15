@@ -17,7 +17,7 @@ namespace PriorMoney.DataImport.CsvImport
         private readonly IReportFileChoseStrategy _fileChoseStrategy;
 
         public FileSystemOperationsLoader(string dataFolderPath,
-            ICardOperationParser cardOperationParser, 
+            ICardOperationParser cardOperationParser,
             IReportFileChoseStrategy fileChoseStrategy)
         {
             _dataFolderPath = dataFolderPath;
@@ -30,7 +30,8 @@ namespace PriorMoney.DataImport.CsvImport
             var dataDir = new DirectoryInfo(_dataFolderPath);
             var file = _fileChoseStrategy.Chose(dataDir);
 
-            if(file != null){
+            if (file != null)
+            {
                 CardOperation[] parsed;
                 using (var reader = new StreamReader(file.FullName, Encoding.GetEncoding(1251)))
                 {
@@ -40,10 +41,11 @@ namespace PriorMoney.DataImport.CsvImport
                 }
 
                 MarkImportFileAsProcessed(file);
-                    
+
                 return parsed.ToList();
             }
-            else{
+            else
+            {
                 return new List<CardOperation>();
             }
         }
@@ -51,7 +53,7 @@ namespace PriorMoney.DataImport.CsvImport
         private void MarkImportFileAsProcessed(FileSystemInfo file)
         {
             var newFileName = Path.Combine(Path.GetDirectoryName(file.FullName),
-                DateTime.Now.ToString("ddMMyyyy_hhmmss") + "_imported" + Path.GetExtension(file.FullName)); 
+                DateTime.Now.ToString("ddMMyyyy_hhmmss") + "_imported" + Path.GetExtension(file.FullName));
             File.Move(file.FullName, newFileName);
         }
     }

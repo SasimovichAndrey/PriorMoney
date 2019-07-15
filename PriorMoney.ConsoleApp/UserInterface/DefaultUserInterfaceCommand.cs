@@ -20,7 +20,10 @@ namespace PriorMoney.ConsoleApp.UserInterface
             commands.Add((new EmptyLineCommandDecorator(importCardOperationsCommand, false, true), "Импорт операций"));
 
             var showOperationsMenuCommand = _serviceProvider.GetService<ShowOperationsCommand>();
-            commands.Add((new EmptyLineCommandDecorator(showOperationsMenuCommand, false, true), "Показать операции за месяц"));
+            commands.Add((new EmptyLineCommandDecorator(showOperationsMenuCommand, false, true), "Показать операции"));
+
+            var manageCategoriesMenuCommand = _serviceProvider.GetService<ManageOperationCategoriesUserInterfaceCommand>();
+            commands.Add((new EmptyLineCommandDecorator(manageCategoriesMenuCommand, false, true), "Управление категориями"));
         }
     }
 }

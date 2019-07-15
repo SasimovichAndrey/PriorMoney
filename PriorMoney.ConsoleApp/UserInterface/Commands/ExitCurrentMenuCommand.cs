@@ -10,6 +10,7 @@ namespace PriorMoney.ConsoleApp.UserInterface.Commands
 
         public async Task ExecuteAsync()
         {
+            await Task.CompletedTask;
         }
     }
 }

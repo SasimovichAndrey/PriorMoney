@@ -1,6 +1,7 @@
 ﻿using PriorMoney.DataImport.CsvImport.Parsers;
 using PriorMoney.DataImport.Interface;
 using PriorMoney.Model;
+using PriorMoney.Utils.ExceptionHandling;
 using PriorMoney.Utils.Models;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,8 @@ namespace PriorMoney.DataImport.CsvImport
 
         public CardOperation[] Parse(string csvStringToImportFrom)
         {
+            Throw.If.String.IsNullOrWhiteSpace(csvStringToImportFrom, nameof(CsvCardOperationParser), nameof(Parse), nameof(csvStringToImportFrom));
+
             List<CardOperation> operations = new List<CardOperation>();
 
             GetReleasedOperations(operations, csvStringToImportFrom);
@@ -31,6 +34,11 @@ namespace PriorMoney.DataImport.CsvImport
             operations = operations.Where(op => op.DateTime >= reportPeriod.StartDate && op.DateTime <= reportPeriod.EndDate).ToList();
 
             return operations.ToArray();
+        }
+
+        private void ValidateParameter(string csvStringToImportFrom)
+        {
+            throw new NotImplementedException();
         }
 
         private DateRange GetReportPeriod(string csvStringToImportFrom)
@@ -82,13 +90,16 @@ namespace PriorMoney.DataImport.CsvImport
             }
         }
 
-        private decimal ParseDecimal(string str){
-            try{
-               return decimal.Parse(str.Replace(',', '.').Replace(" ", ""));
+        private decimal ParseDecimal(string str)
+        {
+            try
+            {
+                return decimal.Parse(str.Replace(',', '.').Replace(" ", ""));
             }
-            catch{
+            catch
+            {
                 Console.WriteLine($"Can't parse decimal value '{str}'");
-                throw;   
+                throw;
             }
         }
 

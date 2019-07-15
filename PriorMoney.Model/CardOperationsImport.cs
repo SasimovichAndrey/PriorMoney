@@ -3,7 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace PriorMoney.Model
 {
-    public class CardOperationsImport
+    public class CardOperationsImport : IHasId
     {
         [BsonId]
         public Guid Id { get; set; }

@@ -45,7 +45,7 @@ namespace PriorMoney.ConsoleApp.UserInterface.Commands
                 if (command != null)
                 {
                     Console.Clear();
-                    await command.ExecuteAsync();
+                    await ExecuteCommand(command);
                 }
                 else
                 {
@@ -53,6 +53,11 @@ namespace PriorMoney.ConsoleApp.UserInterface.Commands
                 }
 
             } while (!(command is ExitCurrentMenuCommand));
+        }
+
+        protected virtual async Task ExecuteCommand(IUserInterfaceCommand command)
+        {
+            await command.ExecuteAsync();
         }
 
         private IUserInterfaceCommand GetCommandFromUserInput()

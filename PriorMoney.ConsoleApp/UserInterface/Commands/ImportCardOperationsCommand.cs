@@ -15,21 +15,25 @@ namespace PriorMoney.ConsoleApp.UserInterface.Commands
         private readonly IModelStringView<CardOperation> _cardOperationView;
         private readonly IStorage<CardOperation> _cardOperationStorage;
         private readonly IStorage<CardOperationsImport> _cardOperationsImportStorage;
+        private readonly IDbLogicManager _dbLogicManager;
 
         public ImportCardOperationsCommand(ICardOperationsLoader cardOperationsImporter,
             IModelStringView<CardOperation> cardOperationView,
             IStorage<CardOperation> cardOperationStorage,
-            IStorage<CardOperationsImport> cardOperationsImportStorage)
+            IStorage<CardOperationsImport> cardOperationsImportStorage,
+            IDbLogicManager dbLogicManager)
         {
             _operationsImporter = cardOperationsImporter;
             _cardOperationView = cardOperationView;
             _cardOperationStorage = cardOperationStorage;
             _cardOperationsImportStorage = cardOperationsImportStorage;
+            _dbLogicManager = dbLogicManager;
         }
 
         public async Task ExecuteAsync()
         {
             var operations = await _operationsImporter.LoadAsync();
+            operations = operations.OrderBy(op => op.DateTime).ToList();
 
             if (operations.Count > 0)
             {
@@ -54,12 +58,16 @@ namespace PriorMoney.ConsoleApp.UserInterface.Commands
                     break;
                 }
 
-                for (var i = 0; i < operationsToSaveToStorage.Count; i++)
+                for (var i = 0; i < operationsToSaveToStorage.Count;)
                 {
                     var operation = operationsToSaveToStorage[i];
-                    var editOpearationCommand = new EditCardOperationUserInterfaceCommand(2, operation, _cardOperationView);
-                    var editedOperation = await editOpearationCommand.ExecuteAsync();
-                    operationsToSaveToStorage[i] = editedOperation;
+                    var editOpearationCommand = new EditCardOperationUserInterfaceCommand(2, operation, _cardOperationView, _dbLogicManager);
+                    var editedOperations = await editOpearationCommand.ExecuteAsync();
+
+                    operationsToSaveToStorage.RemoveAt(i);
+                    operationsToSaveToStorage.InsertRange(i, editedOperations);
+
+                    i += editedOperations.Count;
                 }
 
                 Console.WriteLine("Операции после редактирования:");

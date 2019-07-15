@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriorMoney.DataImport", "PriorMoney.DataImport\PriorMoney.DataImport.csproj", "{77E24BFE-D4EE-40BA-900E-1B35BAA85034}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriorMoney.DataImport.Tests", "PriorMoney.DataImport.Tests\PriorMoney.DataImport.Tests.csproj", "{76B81E1E-FD04-4A45-AD1C-406EC5452146}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriorMoney.Tests", "PriorMoney.Tests\PriorMoney.Tests.csproj", "{76B81E1E-FD04-4A45-AD1C-406EC5452146}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriorMoney.Model", "PriorMoney.Model\PriorMoney.Model.csproj", "{FAA1B543-7B08-431F-BA43-35C33129E52D}"
 EndProject

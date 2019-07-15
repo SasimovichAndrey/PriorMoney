@@ -8,7 +8,7 @@ using System;
 using System.IO;
 using System.Text;
 
-namespace PriorMoney.DataImport.Tests
+namespace PriorMoney.Tests
 {
     [TestFixture]
     public class CsvCardOperationImporterTests
@@ -32,6 +32,14 @@ namespace PriorMoney.DataImport.Tests
         public void SetUp()
         {
             _parser = new CsvCardOperationParser(new DateRangeParserMock(new DateRange() { StartDate = new DateTime(2019, 6, 20), EndDate = new DateTime(2019, 6, 20, 23, 59, 59) }));
+        }
+
+        [Test]
+        public void InvalidParametersTest()
+        {
+            Assert.Throws(typeof(ArgumentException), () => _parser.Parse(null));
+            Assert.Throws(typeof(ArgumentException), () => _parser.Parse(""));
+            Assert.Throws(typeof(ArgumentException), () => _parser.Parse("   "));
         }
 
         [Test]

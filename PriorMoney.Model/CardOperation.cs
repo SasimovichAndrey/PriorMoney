@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace PriorMoney.Model
 {
-    public class CardOperation
+    public class CardOperation : IHasId
     {
         [BsonId]
         public Guid Id { get; set; }
@@ -15,6 +17,8 @@ namespace PriorMoney.Model
         public Currency Currency { get; set; }
 
         public Guid ImportId { get; set; }
+
+        public HashSet<string> Categories { get; set; } = new HashSet<string>();
 
         public override string ToString()
         {
@@ -29,7 +33,8 @@ namespace PriorMoney.Model
                 DateTime = DateTime,
                 Amount = Amount,
                 Currency = Currency,
-                OriginalName = OriginalName
+                OriginalName = OriginalName,
+                Categories = Categories.ToHashSet()
             };
         }
     }

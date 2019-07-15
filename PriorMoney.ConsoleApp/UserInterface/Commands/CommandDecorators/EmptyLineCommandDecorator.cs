@@ -15,6 +15,12 @@ namespace PriorMoney.ConsoleApp.UserInterface.CommandDecorators
             _insertLineAfter = insertLineAfter;
         }
 
+        public EmptyLineCommandDecorator(IUserInterfaceCommand<object> command, bool insertLineBefore, bool insertLineAfter) : base(command)
+        {
+            _insertLineBefore = insertLineBefore;
+            _insertLineAfter = insertLineAfter;
+        }
+
         public async Task ExecuteAsync()
         {
             if (_insertLineBefore) Console.WriteLine();
@@ -23,5 +29,7 @@ namespace PriorMoney.ConsoleApp.UserInterface.CommandDecorators
 
             if (_insertLineAfter) Console.WriteLine();
         }
+
+
     }
 }

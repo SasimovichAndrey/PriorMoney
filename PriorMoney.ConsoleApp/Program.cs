@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
@@ -24,9 +25,49 @@ namespace PriorMoney.ConsoleApp
 
             var serviceProvider = AppInitializer.InitApp(cfg);
 
+#if DEBUG
+            InitTestData(serviceProvider);
+#endif
             StartUserInterfaceAsync(serviceProvider).Wait();
 
             serviceProvider.Dispose();
+        }
+
+        private static void InitTestData(IServiceProvider serviceProvider)
+        {
+            var db = serviceProvider.GetService<IMongoDatabase>();
+
+            var cardOperationsCollection = db.GetCollection<CardOperation>("CardOperations");
+            cardOperationsCollection.DeleteMany(FilterDefinition<CardOperation>.Empty);
+
+            var referenceDateTime = DateTime.Now;
+            var cardOperations = new List<CardOperation>()
+            {
+                new CardOperation{
+                    OriginalName = "AZS 15 GH653",
+                    UserDefinedName = "Топливо",
+                    Amount = -30.10m,
+                    Currency = Currency.BYN,
+                    DateTime = referenceDateTime.AddDays(-20),
+                    Categories = new HashSet<string>(){"Машина", "Транспорт"}
+                },
+                new CardOperation{
+                    OriginalName = "LIMOZH Shop HG211",
+                    UserDefinedName = "Продукты",
+                    Amount = -12.34m,
+                    Currency = Currency.BYN,
+                    DateTime = referenceDateTime.AddDays(-19),
+                    Categories = new HashSet<string>(){"Продукты"}
+                },
+                new CardOperation{
+                    OriginalName = "KIOSK Tvister 326363",
+                    UserDefinedName = "Бургеры",
+                    Amount = -12.34m,
+                    Currency = Currency.BYN,
+                    DateTime = referenceDateTime.AddDays(-19)
+                },
+            };
+            cardOperationsCollection.InsertMany(cardOperations);
         }
 
         private async static Task StartUserInterfaceAsync(IServiceProvider serviceProvider)

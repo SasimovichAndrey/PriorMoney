@@ -9,6 +9,7 @@ using PriorMoney.DataImport.CsvImport.Parsers;
 using PriorMoney.DataImport.Interface;
 using PriorMoney.Model;
 using PriorMoney.Storage.Interface;
+using PriorMoney.Storage.Managers;
 using PriorMoney.Storage.Mongo.Storage;
 
 namespace PriorMoney.ConsoleApp
@@ -24,7 +25,7 @@ namespace PriorMoney.ConsoleApp
 
             var serviceCollection = new ServiceCollection();
 
-            RegisterMongo(cfg, serviceCollection);
+            RegisterStorage(cfg, serviceCollection);
 
             serviceCollection.AddTransient(typeof(IReportFileChoseStrategy), typeof(DefaultReportFileChoseStrategy));
             serviceCollection.AddTransient(typeof(IModelStringView<CardOperation>), typeof(CardOperationStringView));
@@ -36,6 +37,12 @@ namespace PriorMoney.ConsoleApp
                     provider.GetService<IReportFileChoseStrategy>()));
             serviceCollection.AddTransient(typeof(ImportCardOperationsCommand), typeof(ImportCardOperationsCommand));
             serviceCollection.AddTransient(typeof(ShowOperationsCommand), typeof(ShowOperationsCommand));
+            serviceCollection.AddTransient(typeof(ShowOperationsByPeriodCommand), typeof(ShowOperationsByPeriodCommand));
+            serviceCollection.AddTransient(typeof(ShowOperationsByCategoryCommand), typeof(ShowOperationsByCategoryCommand));
+            serviceCollection.AddTransient(typeof(ManageOperationCategoriesUserInterfaceCommand), typeof(ManageOperationCategoriesUserInterfaceCommand));
+            serviceCollection.AddTransient(typeof(SetCardOperationSetCommand), typeof(SetCardOperationSetCommand));
+            serviceCollection.AddTransient(typeof(AddCardOperationToCategoryCommand), typeof(AddCardOperationToCategoryCommand));
+            serviceCollection.AddTransient(typeof(SearchForOperationsCommand), typeof(SearchForOperationsCommand));
             serviceCollection.AddTransient(typeof(ExitCurrentMenuCommand), typeof(ExitCurrentMenuCommand));
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
@@ -44,7 +51,7 @@ namespace PriorMoney.ConsoleApp
             return serviceProvider;
         }
 
-        private static void RegisterMongo(ConsoleAppConfig cfg, IServiceCollection serviceCollection)
+        private static void RegisterStorage(ConsoleAppConfig cfg, IServiceCollection serviceCollection)
         {
             var mongoClient = new MongoClient(cfg.MongoConnectionString);
             var db = mongoClient.GetDatabase(cfg.MongoDbName);
@@ -53,6 +60,8 @@ namespace PriorMoney.ConsoleApp
 
             serviceCollection.AddTransient(typeof(IStorage<CardOperation>), typeof(CardOperationStorage));
             serviceCollection.AddTransient(typeof(IStorage<CardOperationsImport>), typeof(CardOperationsImportStorage));
+
+            serviceCollection.AddTransient(typeof(IDbLogicManager), typeof(DbLogicManager));
         }
     }
 }
