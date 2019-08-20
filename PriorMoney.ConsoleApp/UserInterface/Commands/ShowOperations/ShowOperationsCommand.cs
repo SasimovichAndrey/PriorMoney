@@ -6,7 +6,7 @@ using PriorMoney.Model;
 using PriorMoney.Storage.Interface;
 using PriorMoney.Utils;
 
-namespace PriorMoney.ConsoleApp.UserInterface.Commands
+namespace PriorMoney.ConsoleApp.UserInterface.Commands.ShowOperations
 {
     public class ShowOperationsCommand : BaseUserInterfaceCommand, IUserInterfaceCommand
     {
@@ -23,7 +23,8 @@ namespace PriorMoney.ConsoleApp.UserInterface.Commands
             {
                 new MenuCommandItem{ Command = serviceProvider.GetService<ShowOperationsByPeriodCommand>(), MenuItemLabel = "Показать операции за период"},
                 new MenuCommandItem{ Command = serviceProvider.GetService<ShowOperationsByCategoryCommand>(), MenuItemLabel = "Показать операции по категории"},
-                new MenuCommandItem{ Command = serviceProvider.GetService<SearchForOperationsCommand>(), MenuItemLabel = "Поиск попераций"}
+                new MenuCommandItem{ Command = serviceProvider.GetService<SearchForOperationsCommand>(), MenuItemLabel = "Поиск попераций"},
+                new MenuCommandItem{ Command = serviceProvider.GetService<OutcomeByCategoryReportCommand>(), MenuItemLabel = "Отчёт по категориям"}
             };
         }
 

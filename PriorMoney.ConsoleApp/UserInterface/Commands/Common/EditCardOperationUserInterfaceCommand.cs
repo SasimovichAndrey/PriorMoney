@@ -6,7 +6,7 @@ using PriorMoney.Model;
 using PriorMoney.Storage.Interface;
 using System.Linq;
 
-namespace PriorMoney.ConsoleApp.UserInterface.Commands
+namespace PriorMoney.ConsoleApp.UserInterface.Commands.Common
 {
     public class EditCardOperationUserInterfaceCommand : BaseUserInterfaceCommand, IUserInterfaceCommand<List<CardOperation>>
     {
@@ -14,7 +14,7 @@ namespace PriorMoney.ConsoleApp.UserInterface.Commands
         private readonly IModelStringView<CardOperation> _operationStringView;
         private readonly IDbLogicManager _dbLogicManager;
 
-        public EditCardOperationUserInterfaceCommand(int menuLevel, CardOperation operation, IModelStringView<CardOperation> operationStringView,
+        public EditCardOperationUserInterfaceCommand(CardOperation operation, IModelStringView<CardOperation> operationStringView,
             IDbLogicManager dbLogicManager)
         {
             this._operation = operation;
@@ -39,16 +39,23 @@ namespace PriorMoney.ConsoleApp.UserInterface.Commands
             for (int i = 0; i < resultOperationsCount; i++)
             {
                 var newOperation = _operation.Clone();
+                if (i > 0)
+                {
+                    newOperation.Id = Guid.Empty;
+                }
+
                 newOperation.Amount = moneyLeft;
 
-                // Get suggestions for operation name property based on existing operations in DB with the same original name
+                // Get suggestions for operation properties based on existing operations in DB with the same original name
                 var operationNameSuggestions = await _dbLogicManager.GetOperationNameSuggestions(_operation.OriginalName);
+                var operationCategoriesSuggestions = await _dbLogicManager.GetOperationCategoriesSuggestions(_operation.OriginalName);
 
                 Console.WriteLine($"Операция: {_operationStringView.GetView(newOperation)}");
                 if (ConsoleExtensions.AskYesNo("Редактировать?"))
                 {
-                    EditProperty("Имя операции", newOperation.OriginalName, (value) => { newOperation.UserDefinedName = value; }, operationNameSuggestions);
+                    EditProperty("Имя операции", newOperation.UserDefinedName ?? newOperation.OriginalName, (value) => { newOperation.UserDefinedName = value; }, operationNameSuggestions);
                     EditProperty("Дата", newOperation.DateTime, (value) => { DateTime parsedValue; if (DateTime.TryParse(value, out parsedValue)) newOperation.DateTime = parsedValue; });
+                    EditProperty("Категории", string.Join(",", newOperation.Categories), (value) => newOperation.Categories = value.Split(',').Select(c => c.Trim().ToUpper()).ToHashSet(), operationCategoriesSuggestions);
                     EditOperationAmount(newOperation);
                 }
 
@@ -71,7 +78,7 @@ namespace PriorMoney.ConsoleApp.UserInterface.Commands
                 if (newOperation.Amount > 0 && oldAmount < 0
                     || newOperation.Amount < 0 && oldAmount > 0)
                 {
-                    var allIsOk = ConsoleExtensions.AskYesNo("Поменять знак операции?");
+                    var allIsOk = ConsoleExtensions.AskYesNo("Поменять изначальный знак операции?");
                     if (!allIsOk)
                     {
                         newOperation.Amount = oldAmount;

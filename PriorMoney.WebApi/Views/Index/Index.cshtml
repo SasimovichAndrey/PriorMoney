@@ -1,0 +1,19 @@
+﻿@model PriorMoney.WebApp.Controllers.Razor.Models.IndexViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div id="operations">
+    @Html.Partial("_CardOperations", Model.LastOperations)
+</div>
+
+
+<form>
+    Name<input type="text" /><br />
+    Amount spent<input type="number" />
+    Date<input type="datetime" /><br />
+    Categories<input type="text" /><br />
+    <input type="submit" />
+</form>
+
+<script src="Index.js"></script>

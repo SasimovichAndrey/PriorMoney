@@ -45,3 +45,6 @@ Ankh.NoLoad
 
 #Other
 .svn
+/packages
+/PriorMoney.WebApi/Scripts/node_modules
+/.vs/PriorMoney/v16

@@ -16,4 +16,9 @@ namespace PriorMoney.ConsoleApp.UserInterface
     {
         Task ExecuteAsync(T parameter);
     }
+
+    public interface IParameterizableUserInterfaceCommand<TIn, TOut>
+    {
+        Task<TOut> ExecuteAsync(TIn parameter);
+    }
 }

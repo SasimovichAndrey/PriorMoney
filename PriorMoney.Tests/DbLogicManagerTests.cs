@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using PriorMoney.Storage.Managers;
+using System.Linq;
 
 namespace PriorMoney.Tests
 {
@@ -99,7 +100,32 @@ namespace PriorMoney.Tests
             throw new NotImplementedException();
         }
 
+        public IQueryable<CardOperation> GetAllAsQueryable()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<TPropElemType>> GetDistinct<TPropElemType>(Expression<Func<CardOperation, IEnumerable<TPropElemType>>> collectionProp)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task RemoveById(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task UpdateManyAsync<TField>(List<CardOperation> operations, Expression<Func<CardOperation, TField>> field)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task UpdateManyAsync<TField>(IEnumerable<CardOperation> operations, Expression<Func<CardOperation, TField>> field)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task UpdateManyAsync(IEnumerable<CardOperation> operations)
         {
             throw new NotImplementedException();
         }

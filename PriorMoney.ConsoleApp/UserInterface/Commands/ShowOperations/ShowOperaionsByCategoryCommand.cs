@@ -7,7 +7,7 @@ using PriorMoney.Model;
 using PriorMoney.Storage.Interface;
 
 
-namespace PriorMoney.ConsoleApp.UserInterface.Commands
+namespace PriorMoney.ConsoleApp.UserInterface.Commands.ShowOperations
 {
     public class ShowOperationsByCategoryCommand : BaseUserInterfaceCommand, IUserInterfaceCommand
     {
@@ -33,13 +33,23 @@ namespace PriorMoney.ConsoleApp.UserInterface.Commands
 
         private async Task<List<CardOperation>> GetCardOperationsByUserCategoriesInput(List<string> userCategoriesInput)
         {
-            var operations = await _dbLogicManager.GetOperationsByCategories(userCategoriesInput);
+            List<CardOperation> operations = null;
+            if (userCategoriesInput.Count != 0)
+            {
+
+                operations = await _dbLogicManager.GetOperationsByCategories(userCategoriesInput);
+            }
+            else
+            {
+                operations = await _dbLogicManager.GetOperationsWithNoCategories();
+            }
 
             return operations;
         }
 
         private void RenderOperationsAndTotal(List<CardOperation> operations)
         {
+            operations = operations.OrderBy(op => op.DateTime).ToList();
             foreach (var op in operations)
             {
                 Console.WriteLine($"{operations.IndexOf(op) + 1}. {_cardOperationStringView.GetView(op)}");

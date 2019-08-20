@@ -5,6 +5,9 @@ using PriorMoney.ConsoleApp.UserInterface.Commands;
 using System.Linq;
 using PriorMoney.Utils;
 using PriorMoney.ConsoleApp.UserInterface.CommandDecorators;
+using PriorMoney.ConsoleApp.UserInterface.Commands.Import;
+using PriorMoney.ConsoleApp.UserInterface.Commands.ShowOperations;
+using PriorMoney.ConsoleApp.UserInterface.Commands.ManageOperations;
 
 namespace PriorMoney.ConsoleApp.UserInterface
 {
@@ -22,8 +25,8 @@ namespace PriorMoney.ConsoleApp.UserInterface
             var showOperationsMenuCommand = _serviceProvider.GetService<ShowOperationsCommand>();
             commands.Add((new EmptyLineCommandDecorator(showOperationsMenuCommand, false, true), "Показать операции"));
 
-            var manageCategoriesMenuCommand = _serviceProvider.GetService<ManageOperationCategoriesUserInterfaceCommand>();
-            commands.Add((new EmptyLineCommandDecorator(manageCategoriesMenuCommand, false, true), "Управление категориями"));
+            var manageCategoriesMenuCommand = _serviceProvider.GetService<ManageOperationsUserInterfaceCommand>();
+            commands.Add((new EmptyLineCommandDecorator(manageCategoriesMenuCommand, false, true), "Управление операциями"));
         }
     }
 }

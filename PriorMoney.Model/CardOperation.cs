@@ -29,12 +29,14 @@ namespace PriorMoney.Model
         {
             return new CardOperation
             {
+                Id = Id,
+                ImportId = ImportId,
                 UserDefinedName = UserDefinedName,
                 DateTime = DateTime,
                 Amount = Amount,
                 Currency = Currency,
                 OriginalName = OriginalName,
-                Categories = Categories.ToHashSet()
+                Categories = new HashSet<string>(Categories)
             };
         }
     }

@@ -8,6 +8,11 @@ namespace PriorMoney.Utils
         {
             var service = provider.GetService(typeof(T));
 
+            if (service == null)
+            {
+                throw new Exception($"Could not resolve a service of type {typeof(T).Name}");
+            }
+
             return (T)service;
         }
     }

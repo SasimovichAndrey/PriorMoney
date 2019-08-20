@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PriorMoney.ConsoleApp.UserInterface.Commands.Common;
 using PriorMoney.ConsoleApp.UserInterface.Tools;
 using PriorMoney.DataImport.Interface;
 using PriorMoney.Model;
 using PriorMoney.Storage.Interface;
 
-namespace PriorMoney.ConsoleApp.UserInterface.Commands
+namespace PriorMoney.ConsoleApp.UserInterface.Commands.Import
 {
     public class ImportCardOperationsCommand : BaseUserInterfaceCommand, IUserInterfaceCommand
     {
@@ -61,7 +62,7 @@ namespace PriorMoney.ConsoleApp.UserInterface.Commands
                 for (var i = 0; i < operationsToSaveToStorage.Count;)
                 {
                     var operation = operationsToSaveToStorage[i];
-                    var editOpearationCommand = new EditCardOperationUserInterfaceCommand(2, operation, _cardOperationView, _dbLogicManager);
+                    var editOpearationCommand = new EditCardOperationUserInterfaceCommand(operation, _cardOperationView, _dbLogicManager);
                     var editedOperations = await editOpearationCommand.ExecuteAsync();
 
                     operationsToSaveToStorage.RemoveAt(i);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
@@ -64,9 +65,31 @@ namespace PriorMoney.ConsoleApp
                     UserDefinedName = "Бургеры",
                     Amount = -12.34m,
                     Currency = Currency.BYN,
+                    DateTime = referenceDateTime.AddDays(-19),
+                    Categories = new HashSet<string>(){"Бургеры", "Еда"}
+                },
+                new CardOperation{
+                    OriginalName = "Stolovka",
+                    UserDefinedName = "Столовая",
+                    Amount = -22.34m,
+                    Currency = Currency.BYN,
                     DateTime = referenceDateTime.AddDays(-19)
                 },
+                new CardOperation{
+                    OriginalName = "Stolovka",
+                    UserDefinedName = "Столовая",
+                    Amount = -22.34m,
+                    Currency = Currency.BYN,
+                    DateTime = referenceDateTime.AddDays(-19),
+                    Categories = new HashSet<string>()
+        }
             };
+
+            cardOperations.ForEach(op =>
+            {
+                if (op.Categories != null) op.Categories = op.Categories.Select(c => c.ToUpper().Trim()).ToHashSet();
+            });
+
             cardOperationsCollection.InsertMany(cardOperations);
         }
 

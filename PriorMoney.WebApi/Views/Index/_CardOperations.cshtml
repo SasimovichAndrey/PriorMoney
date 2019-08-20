@@ -1,0 +1,5 @@
+﻿@model List<PriorMoney.Model.CardOperation>
+@foreach (var op in Model)
+{
+    <div>@op.UserDefinedName - @op.DateTime</div>
+}

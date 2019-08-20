@@ -5,7 +5,7 @@ using PriorMoney.ConsoleApp.UserInterface.Tools;
 using PriorMoney.Model;
 using PriorMoney.Storage.Interface;
 
-namespace PriorMoney.ConsoleApp.UserInterface.Commands
+namespace PriorMoney.ConsoleApp.UserInterface.Commands.ManageOperations
 {
     public class AddCardOperationToCategoryCommand : BaseUserInterfaceCommand, IParameterizableUserInterfaceCommand<List<CardOperation>>
     {

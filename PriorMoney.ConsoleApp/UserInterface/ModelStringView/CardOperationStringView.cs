@@ -4,7 +4,7 @@ public class CardOperationStringView : IModelStringView<CardOperation>
 {
     public string GetView(CardOperation model)
     {
-        var categories = string.Join(", ", model.Categories);
-        return $"{model.UserDefinedName ?? model.OriginalName} {model.DateTime.ToString("dd/MM/yyyy HH:mm")} {model.Amount} [{categories}]";
+        var categories = model.Categories != null ? string.Join(", ", model.Categories) : string.Empty;
+        return $"{model.UserDefinedName ?? model.OriginalName} {model.DateTime.ToLocalTime().ToString("dd/MM/yyyy HH:mm")} {model.Amount} [{categories}]";
     }
 }

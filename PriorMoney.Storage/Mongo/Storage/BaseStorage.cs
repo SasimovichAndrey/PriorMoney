@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using MongoDB.Driver;
 using PriorMoney.Model;
+using MongoDB.Driver.Linq;
+using System.Linq;
 
 namespace PriorMoney.Storage.Mongo.Storage
 {
@@ -59,7 +60,21 @@ namespace PriorMoney.Storage.Mongo.Storage
             return await this.Get(item => true);
         }
 
-        public async Task UpdateManyAsync<TField>(List<T> operations, Expression<Func<T, TField>> field)
+        public IQueryable<T> GetAllAsQueryable()
+        {
+            return GetCollection().AsQueryable();
+        }
+
+        public async Task<List<TPropElemType>> GetDistinct<TPropElemType>(Expression<Func<T, IEnumerable<TPropElemType>>> collectionProp)
+        {
+            var collection = GetCollection();
+
+            var distinctAcrossAllPropInstances = await collection.AsQueryable().SelectMany(collectionProp).Distinct().ToListAsync();
+
+            return distinctAcrossAllPropInstances;
+        }
+
+        public async Task UpdateManyAsync<TField>(IEnumerable<T> operations, Expression<Func<T, TField>> field)
         {
             var collection = GetCollection();
 
@@ -74,6 +89,24 @@ namespace PriorMoney.Storage.Mongo.Storage
             }
 
             await Task.WhenAll(updateOperations);
+        }
+
+        public async Task UpdateManyAsync(IEnumerable<T> operations)
+        {
+            var collection = GetCollection();
+
+            foreach (var op in operations)
+            {
+                FilterDefinition<T> filter = Builders<T>.Filter.Eq(e => e.Id, op.Id);
+                await collection.ReplaceOneAsync(filter, op);
+            }
+        }
+
+        public async Task RemoveById(Guid id)
+        {
+            var collection = GetCollection();
+
+            await collection.DeleteOneAsync(e => e.Id == id);
         }
 
         protected IMongoCollection<T> GetCollection()

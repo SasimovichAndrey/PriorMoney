@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -8,7 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.1.1" />
+    <PackageReference Include="Moq" Version="4.12.0" />
     <PackageReference Include="NUnit" Version="3.12.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="4.5.1" />
@@ -16,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PriorMoney.DataImport\PriorMoney.DataImport.csproj" />
+    <ProjectReference Include="..\PriorMoney.DesktopApp\PriorMoney.DesktopApp.csproj" />
     <ProjectReference Include="..\PriorMoney.Model\PriorMoney.Model.csproj" />
     <ProjectReference Include="..\PriorMoney.Storage\PriorMoney.Storage.csproj" />
   </ItemGroup>

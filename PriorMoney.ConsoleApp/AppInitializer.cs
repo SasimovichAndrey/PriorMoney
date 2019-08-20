@@ -1,9 +1,15 @@
 using System;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 using PriorMoney.ConsoleApp.Model;
 using PriorMoney.ConsoleApp.UserInterface.Commands;
+using PriorMoney.ConsoleApp.UserInterface.Commands.Import;
+using PriorMoney.ConsoleApp.UserInterface.Commands.ManageOperations;
+using PriorMoney.ConsoleApp.UserInterface.Commands.ShowOperations;
 using PriorMoney.DataImport.CsvImport;
 using PriorMoney.DataImport.CsvImport.Parsers;
 using PriorMoney.DataImport.Interface;
@@ -29,6 +35,7 @@ namespace PriorMoney.ConsoleApp
 
             serviceCollection.AddTransient(typeof(IReportFileChoseStrategy), typeof(DefaultReportFileChoseStrategy));
             serviceCollection.AddTransient(typeof(IModelStringView<CardOperation>), typeof(CardOperationStringView));
+            serviceCollection.AddTransient(typeof(IModelStringView<OperationSetStatistics>), typeof(CardOperationSetStatisticsStringView));
             serviceCollection.AddTransient(typeof(ICardOperationParser), typeof(CsvCardOperationParser));
             serviceCollection.AddTransient(typeof(IDateRangeParser), typeof(DateRangeParser));
             serviceCollection.AddTransient(typeof(ICardOperationsLoader), (provider) =>
@@ -39,8 +46,11 @@ namespace PriorMoney.ConsoleApp
             serviceCollection.AddTransient(typeof(ShowOperationsCommand), typeof(ShowOperationsCommand));
             serviceCollection.AddTransient(typeof(ShowOperationsByPeriodCommand), typeof(ShowOperationsByPeriodCommand));
             serviceCollection.AddTransient(typeof(ShowOperationsByCategoryCommand), typeof(ShowOperationsByCategoryCommand));
-            serviceCollection.AddTransient(typeof(ManageOperationCategoriesUserInterfaceCommand), typeof(ManageOperationCategoriesUserInterfaceCommand));
+            serviceCollection.AddTransient(typeof(OutcomeByCategoryReportCommand), typeof(OutcomeByCategoryReportCommand));
+            serviceCollection.AddTransient(typeof(ShowAllCategoriesCommand), typeof(ShowAllCategoriesCommand));
+            serviceCollection.AddTransient(typeof(ManageOperationsUserInterfaceCommand), typeof(ManageOperationsUserInterfaceCommand));
             serviceCollection.AddTransient(typeof(SetCardOperationSetCommand), typeof(SetCardOperationSetCommand));
+            serviceCollection.AddTransient(typeof(EditCardOperationsCommand), typeof(EditCardOperationsCommand));
             serviceCollection.AddTransient(typeof(AddCardOperationToCategoryCommand), typeof(AddCardOperationToCategoryCommand));
             serviceCollection.AddTransient(typeof(SearchForOperationsCommand), typeof(SearchForOperationsCommand));
             serviceCollection.AddTransient(typeof(ExitCurrentMenuCommand), typeof(ExitCurrentMenuCommand));
@@ -53,6 +63,9 @@ namespace PriorMoney.ConsoleApp
 
         private static void RegisterStorage(ConsoleAppConfig cfg, IServiceCollection serviceCollection)
         {
+            BsonSerializer.RegisterSerializer(typeof(decimal), new DecimalSerializer(BsonType.Decimal128));
+            BsonSerializer.RegisterSerializer(typeof(decimal?), new NullableSerializer<decimal>(new DecimalSerializer(BsonType.Decimal128)));
+
             var mongoClient = new MongoClient(cfg.MongoConnectionString);
             var db = mongoClient.GetDatabase(cfg.MongoDbName);
 

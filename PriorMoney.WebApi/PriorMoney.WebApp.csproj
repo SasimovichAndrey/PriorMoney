@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <AssemblyName>PriorMoney.WebApp</AssemblyName>
+    <RootNamespace>PriorMoney.WebApp</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Scripts\Libraries\**" />
+    <Content Remove="Scripts\Libraries\**" />
+    <EmbeddedResource Remove="Scripts\Libraries\**" />
+    <None Remove="Scripts\Libraries\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.OData" Version="7.2.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PriorMoney.Model\PriorMoney.Model.csproj" />
+    <ProjectReference Include="..\PriorMoney.Storage\PriorMoney.Storage.csproj" />
+    <ProjectReference Include="..\PriorMoney.Utils\PriorMoney.Utils.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+</Project>
