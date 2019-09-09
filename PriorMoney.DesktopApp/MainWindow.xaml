@@ -5,56 +5,116 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PriorMoney.DesktopApp"
         xmlns:converters="clr-namespace:PriorMoney.DesktopApp.ViewModel.Converters"
+        xmlns:models="clr-namespace:PriorMoney.DesktopApp.Model"
+        xmlns:commands="clr-namespace:PriorMoney.DesktopApp.ViewModel.Commands"
         xmlns:vm="clr-namespace:PriorMoney.DesktopApp.ViewModel"
+        xmlns:v="clr-namespace:PriorMoney.DesktopApp.View"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        xmlns:dvm="clr-namespace:PriorMoney.DesktopApp.SampleData"
+
+        Title="MainWindow" MinHeight="450" Height="Auto" Width="1000">
     <Window.Resources>
-        <Style TargetType="TextBlock" x:Key="cardOperationTextBlockStyle">
-            <Setter Property="Margin" Value="5"/>
-        </Style>
         <converters:VisibilityToBoolConverter x:Key="VisibilityToBoolConverter"/>
         <converters:CategoriesStringListToHashSetConverter x:Key="CategoriesStringListToHashSetConverter"/>
+        <converters:StringToDecimalConverter x:Key="StringToDecimalConverter"/>
     </Window.Resources>
-    <StackPanel>
+    <StackPanel d:DataContext ="{d:DesignInstance {x:Type dvm:DesignTimeData}, 
+     IsDesignTimeCreatable=True}"
+                Height="700px"
+                x:Name="rootLayout">
+        <Menu>
+            <MenuItem Header="File">
+                <MenuItem Header="Import" Click="OpenImportDialog"></MenuItem>
+            </MenuItem>
+        </Menu>
         <ListView x:Name="operationsListView"
-                  ItemsSource="{Binding CardOperations}">
+                  ItemsSource="{Binding CardOperations}"
+                  MaxHeight="600"
+                  ScrollViewer.ScrollChanged="cardOperationsListView_ScrollChanged">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <DockPanel>
-                        <TextBlock Text="{Binding UserDefinedName}" Style="{StaticResource cardOperationTextBlockStyle}"/>
-                        <TextBlock Text="{Binding Amount}" Style="{StaticResource cardOperationTextBlockStyle}"/>
-                        <TextBlock Text="{Binding DateTime}" Style="{StaticResource cardOperationTextBlockStyle}"/>
-                        <TextBlock Text="{Binding Categories, Converter={StaticResource CategoriesStringListToHashSetConverter}}" Style="{StaticResource cardOperationTextBlockStyle}"/>
-                        <Button 
-                            Content="X"
-                            Command="{Binding ElementName=operationsListView, Path=DataContext.RemoveOperationCommand}" CommandParameter="{Binding}"/>
-                    </DockPanel>
+                    <v:CardOperationView 
+                        
+                        CardOperation="{Binding}"
+                        AvailableCategories="{Binding ElementName=rootLayout, Path=DataContext.AvailableCategories}"
+                        OperationRemoved="CardOperationView_OperationRemoved" 
+                        OperationSaved="CardOperationView_OperationSaved"
+                        HorizontalAlignment="Stretch"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
         <StackPanel Visibility="{Binding IsNewCardOperationBeingAdded, Converter={StaticResource VisibilityToBoolConverter}, ConverterParameter=true}"
                     KeyUp="StackPanel_KeyUp">
-            <DockPanel x:Name="NewOperationForm">
+            <StackPanel.Resources>
+                <Thickness Top="0" Bottom="0" Left="0" Right="5" x:Key="margin"/>
+                <sys:String x:Key="top">Top</sys:String>
+                <sys:Double x:Key="InputElementHeight">20</sys:Double>
+                <VerticalAlignment x:Key="InputVerticalAlignment">Top</VerticalAlignment>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Margin" Value="{StaticResource margin}"/>
+                    <Setter Property="Height" Value="{StaticResource InputElementHeight}"/>
+                    <Setter Property="VerticalAlignment" Value="{StaticResource InputVerticalAlignment}"/>
+                </Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="Margin" Value="{StaticResource margin}"/>
+                    <Setter Property="Height" Value="{StaticResource InputElementHeight}"/>
+                    <Setter Property="VerticalAlignment" Value="{StaticResource InputVerticalAlignment}"/>
+                </Style>
+                <Style TargetType="DatePicker">
+                    <Setter Property="Margin" Value="{StaticResource margin}"/>
+                    <Setter Property="Height" Value="{StaticResource InputElementHeight}"/>
+                    <Setter Property="VerticalAlignment" Value="{StaticResource InputVerticalAlignment}"/>
+                </Style>
+            </StackPanel.Resources>
+            <StackPanel x:Name="NewOperationForm"
+                        Margin="10,10"
+                        Orientation="Horizontal"
+                        >
                 <TextBlock>Name</TextBlock>
                 <TextBox 
                     Width="100"
-                    Text="{Binding Path=NewCardOperation.UserDefinedName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    Text="{Binding Path=NewCardOperation.UserDefinedName, UpdateSourceTrigger=PropertyChanged}"
+                    ></TextBox>
                 <TextBlock>Amount</TextBlock>
                 <TextBox 
                     Width="100"
-                    Text="{Binding NewCardOperation.Amount, UpdateSourceTrigger=PropertyChanged}">
+                    Text="{Binding NewCardOperation.Amount, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}">
                 </TextBox>
                 <DatePicker SelectedDate="{Binding NewCardOperation.DateTime, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
-                <TextBlock>Categories</TextBlock>
-                <TextBox 
-                    Text="{Binding NewCardOperation.Categories, Converter={StaticResource CategoriesStringListToHashSetConverter}, UpdateSourceTrigger=PropertyChanged}">
-                </TextBox>
-            </DockPanel>
-            <Button Command="{Binding SaveNewOperationCommand}">Save</Button>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                        <TextBlock>Categories</TextBlock>
+                        <TextBox 
+                            Text="{Binding NewCardOperation.Categories, 
+                                            Converter={StaticResource CategoriesStringListToHashSetConverter}, 
+                                            UpdateSourceTrigger=PropertyChanged}"
+                            Width="400"
+                        >
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <ComboBox ItemsSource="{Binding AvailableCategories}" SelectedItem="{Binding SelectedCategoryToAdd}"></ComboBox>
+                        <Button Command="{Binding AddCategoryToOperationCategoriesCommand}">Add</Button>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <Button Command="{Binding SaveNewOperationCommand}"
+                    CommandParameter="{Binding NewCardOperation, Mode=TwoWay}"
+                    Margin="10,10">
+                Save
+            </Button>
         </StackPanel>
         
         <Button 
             Visibility="{Binding IsNewCardOperationBeingAdded, Converter={StaticResource VisibilityToBoolConverter}, ConverterParameter=false}"
-            Command="{Binding AddNewCardOperationCommand}" Content="Add operation"/>
+            Command="{Binding AddNewCardOperationCommand}" 
+            Content="Add operation"
+            Margin="10,10"/>
     </StackPanel>
 </Window>

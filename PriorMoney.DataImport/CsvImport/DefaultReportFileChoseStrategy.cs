@@ -6,9 +6,9 @@ namespace PriorMoney.DataImport.CsvImport
 {
     public class DefaultReportFileChoseStrategy : IReportFileChoseStrategy
     {
-        public FileSystemInfo Chose(DirectoryInfo directory)
+        public string Chose(DirectoryInfo directory)
         {
-            return directory.GetFileSystemInfos().FirstOrDefault(f => !Path.GetFileNameWithoutExtension(f.Name).EndsWith("_imported"));
+            return directory.GetFileSystemInfos().FirstOrDefault(f => !Path.GetFileNameWithoutExtension(f.Name).EndsWith("_imported"))?.FullName;
         }
     }
 }

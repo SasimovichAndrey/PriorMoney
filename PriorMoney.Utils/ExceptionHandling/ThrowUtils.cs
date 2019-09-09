@@ -16,6 +16,14 @@ namespace PriorMoney.Utils.ExceptionHandling
                     }
                 }
             }
+
+            public static void IsNull<T>(T obj, string className, string methodName, string parameterName) where T: class
+            {
+                if(obj == null)
+                {
+                    throw new ArgumentException($"The value for parameter '{parameterName}' of '{className}.{methodName}' method cannot be null");
+                };
+            }
         }
     }
 }

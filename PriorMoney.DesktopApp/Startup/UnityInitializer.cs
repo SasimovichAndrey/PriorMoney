@@ -2,6 +2,11 @@
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
+using PriorMoney.DataImport.CsvImport;
+using PriorMoney.DataImport.CsvImport.Parsers;
+using PriorMoney.DataImport.Interface;
+using PriorMoney.DesktopApp.Infrastructure;
+using PriorMoney.DesktopApp.View;
 using PriorMoney.DesktopApp.ViewModel;
 using PriorMoney.Model;
 using PriorMoney.Storage.Interface;
@@ -14,6 +19,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Unity;
+using Unity.Injection;
 
 namespace PriorMoney.DesktopApp.Startup
 {
@@ -27,6 +33,12 @@ namespace PriorMoney.DesktopApp.Startup
 
             _container.RegisterType<IDbLogicManager, DbLogicManager>();
             _container.RegisterInstance(AutoMapperConfig.Configure());
+
+            _container.RegisterType<IReportFileChoseStrategy, FileOpenDialogtReportFileChoseStrategy>();
+            _container.RegisterType<ICardOperationParser, CsvCardOperationParser>();
+            _container.RegisterType<IDateRangeParser, DateRangeParser>();
+            _container.RegisterInstance<IConfigurationProvider>(new PriorMoneyDesktopAppConfigProvider());
+            _container.RegisterType<ICardOperationsLoader, FileSystemOperationsLoader>();
         }
 
         public static UnityContainer GetConfiguredContainer()

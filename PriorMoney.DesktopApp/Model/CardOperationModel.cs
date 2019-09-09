@@ -13,6 +13,7 @@ namespace PriorMoney.DesktopApp.Model
 {
     public class CardOperationModel : INotifyPropertyChanged
     {
+
         #region Properties
         public Guid Id { get; set; }
 
@@ -28,8 +29,8 @@ namespace PriorMoney.DesktopApp.Model
             }
         }
 
-        private int _amount;
-        public int Amount
+        private decimal _amount;
+        public decimal Amount
         {
             get { return _amount; }
             set
@@ -65,8 +66,6 @@ namespace PriorMoney.DesktopApp.Model
         }
 
         private HashSet<string> _categories;
-        private IDbLogicManager _dbLogicManager;
-        private ObservableCollection<CardOperationModel> _parentCollection;
 
         [HasDefaultValue]
         public HashSet<string> Categories
@@ -94,13 +93,6 @@ namespace PriorMoney.DesktopApp.Model
             Categories = new HashSet<string>();
         }
 
-        public async Task Remove()
-        {
-            await _dbLogicManager.RemoveCardOperationById(Id);
-
-            _parentCollection.Remove(this);
-        }
-
         private void OnPropertyChanged(string propName)
         {
             if(PropertyChanged != null)
@@ -126,6 +118,22 @@ namespace PriorMoney.DesktopApp.Model
             }
 
             SetDefaultValues();
+        }
+
+        // TODO: move validation away from here
+        public bool IsModelReadyForSaving()
+        {
+            if (string.IsNullOrWhiteSpace(UserDefinedName))
+            {
+                return false;
+            }
+
+            if(Amount == 0)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 

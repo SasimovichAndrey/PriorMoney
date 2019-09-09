@@ -61,6 +61,7 @@ namespace PriorMoney.DataImport.CsvImport
                     var operationLinesGroupIndex = 2;
                     var operationLines = operationBlockMatch
                         .Groups[operationLinesGroupIndex].Captures
+                        .Cast<Capture>()
                         .Skip(headerRowsToSkip)
                         .Select(capture => capture.ToString())
                         .Where(l => !string.IsNullOrWhiteSpace(l));
@@ -74,15 +75,16 @@ namespace PriorMoney.DataImport.CsvImport
                         int cellGroupIndex = 1;
                         var cells = operationLineRegex.Match(operationLine)
                             .Groups[cellGroupIndex].Captures
+                            .Cast<Capture>()
                             .Select(capt => capt.ToString().Replace(";", ""))
                             .ToArray();
 
                         // Parse data
                         var newCardOperation = new CardOperation();
-                        newCardOperation.DateTime = DateTime.ParseExact(cells[0], "dd.MM.yyyy HH:mm:ss", null);
+                        newCardOperation.DateTime = DateTime.ParseExact(cells[0], "dd.MM.yyyy HH:mm:ss", null, DateTimeStyles.AssumeLocal);
                         newCardOperation.OriginalName = cells[1];
                         newCardOperation.Amount = -ParseDecimal(cells[2]);
-                        newCardOperation.Currency = Enum.Parse<Currency>(cells[3]);
+                        newCardOperation.Currency = (Currency)Enum.Parse(typeof(Currency), cells[3]);
 
                         operations.Add(newCardOperation);
                     }
@@ -118,6 +120,7 @@ namespace PriorMoney.DataImport.CsvImport
                     var operationLinesGroupIndex = 2;
                     var operationLines = operationBlockMatch
                         .Groups[operationLinesGroupIndex].Captures
+                        .Cast<Capture>()
                         .Skip(headerRowsToSkip)
                         .Select(capture => capture.ToString())
                         .Where(l => !string.IsNullOrWhiteSpace(l));
@@ -131,15 +134,16 @@ namespace PriorMoney.DataImport.CsvImport
                         int cellGroupIndex = 1;
                         var cells = operationLineRegex.Match(operationLine)
                             .Groups[cellGroupIndex].Captures
+                            .Cast<Capture>()
                             .Select(capt => capt.ToString().Replace(";", ""))
                             .ToArray();
 
                         // Parse data
                         var newCardOperation = new CardOperation();
-                        newCardOperation.DateTime = DateTime.ParseExact(cells[0], "dd.MM.yyyy HH:mm:ss", null);
+                        newCardOperation.DateTime = DateTime.ParseExact(cells[0], "dd.MM.yyyy HH:mm:ss", null, DateTimeStyles.AssumeLocal);
                         newCardOperation.OriginalName = cells[1];
                         newCardOperation.Amount = ParseDecimal(cells[2]);
-                        newCardOperation.Currency = Enum.Parse<Currency>(cells[3]);
+                        newCardOperation.Currency = (Currency)Enum.Parse(typeof(Currency),cells[3]);
 
                         operations.Add(newCardOperation);
                     }

@@ -1,0 +1,52 @@
+﻿<Window x:Class="PriorMoney.DesktopApp.View.ImportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PriorMoney.DesktopApp.View"
+        xmlns:uc="clr-namespace:PriorMoney.DesktopApp.View"
+        mc:Ignorable="d"
+        Title="ImportWindow" Height="450" Width="800"
+        xmlns:dvm="clr-namespace:PriorMoney.DesktopApp.SampleData"
+        d:DataContext ="{d:DesignInstance {x:Type dvm:DesignTimeData}, IsDesignTimeCreatable=True}">
+    <StackPanel x:Name="importWindowRootLayout">
+        <DockPanel>
+            <DockPanel.Resources>
+                <Style TargetType="{x:Type FrameworkElement}">
+                    <Setter Property="Margin" Value="5"/>
+                </Style>
+                <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type FrameworkElement}}" />
+                <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type FrameworkElement}}" />
+                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type FrameworkElement}}" />
+            </DockPanel.Resources>
+            <TextBlock>Import</TextBlock>
+            <Button 
+                Command="{Binding ImportHandler}"
+                HorizontalAlignment="Left"        
+            >
+                Browse report file
+            </Button>
+        </DockPanel>
+        <ListView ItemsSource="{Binding CardOperations}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <uc:CardOperationView 
+                        CardOperation="{Binding}"
+                        AvailableCategories="{Binding ElementName=importWindowRootLayout, Path=DataContext.AvailableCategories, Mode=TwoWay}"
+                        OperationRemoved="CardOperationView_OperationRemoved" 
+                        HorizontalAlignment="Stretch">
+                    </uc:CardOperationView>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button 
+            Command="{Binding SaveImportedOperationsCommand}"
+            Visibility="{Binding DataImported, Converter={StaticResource VisibilityToBoolConverter}, ConverterParameter=true}">
+            Save to database</Button>
+    </StackPanel>
+</Window>

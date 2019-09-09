@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PriorMoney.DesktopApp.Model;
+using System;
 using System.Windows.Input;
 
 namespace PriorMoney.DesktopApp.ViewModel.Commands
@@ -21,7 +22,7 @@ namespace PriorMoney.DesktopApp.ViewModel.Commands
 
         public async void Execute(object parameter)
         {
-            await _viewModel.AddNewCardOperation();
+            await _viewModel.InitializeNewCardOperationForAdding();
         }
     }
 }

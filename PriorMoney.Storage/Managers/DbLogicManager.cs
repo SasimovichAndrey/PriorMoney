@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using PriorMoney.Model;
 using PriorMoney.Storage.Interface;
 using PriorMoney.Utils;
+using PriorMoney.Utils.ExceptionHandling;
 
 namespace PriorMoney.Storage.Managers
 {
@@ -16,6 +17,16 @@ namespace PriorMoney.Storage.Managers
         public DbLogicManager(IStorage<CardOperation> cardOperationStorage)
         {
             _cardOperationStorage = cardOperationStorage;
+        }
+
+        public async Task AddManyOperations(List<CardOperation> operations)
+        {
+            Throw.If.IsNull(operations, nameof(DbLogicManager), nameof(AddManyOperations), nameof(operations));
+
+            if(operations.Count > 0)
+            {
+                await _cardOperationStorage.AddMany(operations);
+            }
         }
 
         public async Task<CardOperation> AddNewOperation(CardOperation newCardOperation)
@@ -62,9 +73,9 @@ namespace PriorMoney.Storage.Managers
             return categories;
         }
 
-        public async Task<List<CardOperation>> GetLastOperations(int operationsNumber)
+        public async Task<List<CardOperation>> GetLastOperations(int operationsNumber, int skip = 0)
         {
-            var operations = await _cardOperationStorage.GetAllAsQueryable().OrderBy(op => op.DateTime).Take(operationsNumber).ToListAsync();
+            var operations = await _cardOperationStorage.GetAllAsQueryable().OrderByDescending(op => op.DateTime).Skip(skip).Take(operationsNumber).ToListAsync();
 
             return operations;
         }

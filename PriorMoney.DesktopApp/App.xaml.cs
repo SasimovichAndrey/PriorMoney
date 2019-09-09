@@ -21,6 +21,7 @@ namespace PriorMoney.DesktopApp
             var container = UnityInitializer.GetConfiguredContainer();
 
             MainWindow = container.Resolve<MainWindow>();
+            MainWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             MainWindow.Show();
         }
     }

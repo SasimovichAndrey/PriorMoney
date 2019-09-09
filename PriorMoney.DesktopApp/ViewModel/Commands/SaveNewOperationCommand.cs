@@ -1,5 +1,7 @@
-﻿using System;
+﻿using PriorMoney.DesktopApp.Model;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,12 +22,24 @@ namespace PriorMoney.DesktopApp.ViewModel.Commands
 
         public bool CanExecute(object parameter)
         {
-            return true;
+            if (parameter != null)
+            {
+                var cardOPerationModel = parameter as CardOperationModel;
+                return cardOPerationModel.IsModelReadyForSaving();
+            }
+
+            return false;
         }
 
         public async void Execute(object parameter)
         {
             await _viewModel.SaveNewOperation();
+        }
+
+        public void RaiseOperationModelChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if(CanExecuteChanged != null)
+                CanExecuteChanged(this, e);
         }
     }
 }

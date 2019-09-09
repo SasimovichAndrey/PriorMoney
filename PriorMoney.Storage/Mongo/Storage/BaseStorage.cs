@@ -19,14 +19,14 @@ namespace PriorMoney.Storage.Mongo.Storage
             this._database = database;
         }
 
-        public async Task Add(T entity)
+        public virtual async Task Add(T entity)
         {
             var collection = GetCollection();
 
             await collection.InsertOneAsync(entity);
         }
 
-        public async Task AddMany(IEnumerable<T> entities)
+        public virtual async Task AddMany(IEnumerable<T> entities)
         {
             var collection = GetCollection();
 

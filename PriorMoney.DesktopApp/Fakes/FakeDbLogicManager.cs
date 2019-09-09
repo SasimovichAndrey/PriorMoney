@@ -31,6 +31,11 @@ namespace PriorMoney.DesktopApp.Fakes
                 }
             };
 
+        public Task AddManyOperations(List<CardOperation> operations)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<CardOperation> AddNewOperation(CardOperation newCardOperation)
         {
             newCardOperation.Id = Guid.NewGuid();
@@ -54,11 +59,11 @@ namespace PriorMoney.DesktopApp.Fakes
             throw new NotImplementedException();
         }
 
-        public async Task<List<CardOperation>> GetLastOperations(int operationsNumber)
+        public async Task<List<CardOperation>> GetLastOperations(int operationsNumber, int skip = 0)
         {
             await Task.Delay(100);
 
-            return operations;
+            return operations.Skip(skip).ToList();
         }
 
         public Task<List<string>> GetOperationCategoriesSuggestions(string originalName)

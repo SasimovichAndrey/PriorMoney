@@ -46,7 +46,7 @@ namespace PriorMoney.Tests.DesktopApp
             };
 
             var dbLogicManagerMock = new Mock<IDbLogicManager>();
-            dbLogicManagerMock.Setup(o => o.GetLastOperations(It.IsAny<int>())).Returns(Task.FromResult<List<CardOperation>>(hardCodedOperations));
+            dbLogicManagerMock.Setup(o => o.GetLastOperations(It.IsAny<int>(), 0)).Returns(Task.FromResult<List<CardOperation>>(hardCodedOperations));
 
             var dbLogicManager = dbLogicManagerMock.Object;
 

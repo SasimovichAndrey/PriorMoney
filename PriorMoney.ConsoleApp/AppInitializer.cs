@@ -5,6 +5,7 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
+using PriorMoney.ConsoleApp.Infrastructure;
 using PriorMoney.ConsoleApp.Model;
 using PriorMoney.ConsoleApp.UserInterface.Commands;
 using PriorMoney.ConsoleApp.UserInterface.Commands.Import;
@@ -38,10 +39,8 @@ namespace PriorMoney.ConsoleApp
             serviceCollection.AddTransient(typeof(IModelStringView<OperationSetStatistics>), typeof(CardOperationSetStatisticsStringView));
             serviceCollection.AddTransient(typeof(ICardOperationParser), typeof(CsvCardOperationParser));
             serviceCollection.AddTransient(typeof(IDateRangeParser), typeof(DateRangeParser));
-            serviceCollection.AddTransient(typeof(ICardOperationsLoader), (provider) =>
-                new FileSystemOperationsLoader(cfg.OperationsReportsDataFolderPath,
-                    provider.GetService<ICardOperationParser>(),
-                    provider.GetService<IReportFileChoseStrategy>()));
+            serviceCollection.AddSingleton(typeof(IConfigurationProvider), new ConfigProvider(cfg));
+            serviceCollection.AddTransient(typeof(ICardOperationsLoader), typeof(FileSystemOperationsLoader));
             serviceCollection.AddTransient(typeof(ImportCardOperationsCommand), typeof(ImportCardOperationsCommand));
             serviceCollection.AddTransient(typeof(ShowOperationsCommand), typeof(ShowOperationsCommand));
             serviceCollection.AddTransient(typeof(ShowOperationsByPeriodCommand), typeof(ShowOperationsByPeriodCommand));

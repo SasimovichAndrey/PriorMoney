@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using PriorMoney.DesktopApp.Model;
+using PriorMoney.DesktopApp.View;
 using PriorMoney.DesktopApp.ViewModel.Commands;
 using PriorMoney.Model;
 using PriorMoney.Storage.Interface;
@@ -15,14 +16,18 @@ namespace PriorMoney.DesktopApp.ViewModel
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
+        #region Private fields
         private IDbLogicManager _dbLogicManager;
         private readonly IMapper _mapper;
+        private bool _isNewCardOperationBeingAdded;
+        private List<string> _availableCategories;
+        #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        #region Properties
         public ObservableCollection<CardOperationModel> CardOperations { get; set; } = new ObservableCollection<CardOperationModel>();
 
-        private bool _isNewCardOperationBeingAdded;
         public bool IsNewCardOperationBeingAdded {
             get
             {
@@ -35,20 +40,35 @@ namespace PriorMoney.DesktopApp.ViewModel
             }
         }
 
-        private void OnPropertyChanged(string propName)
+        public List<string> AvailableCategories
         {
-            if(PropertyChanged != null)
+            get
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(propName));
+                return _availableCategories;
+            }
+            set
+            {
+                _availableCategories = value;
+                OnPropertyChanged(nameof(AvailableCategories));
             }
         }
 
-        public AddNewCardOperationCommand AddNewCardOperationCommand { get; set; }
-        public SaveNewOperationCommand SaveNewOperationCommand{ get; set; }
-        public RemoveOperationCommand RemoveOperationCommand { get; private set; }
-        public ICommand TestCommand { get; set; }
-
         public CardOperationModel NewCardOperation { get; set; }
+
+        public string SelectedCategoryToAdd { get; set; }
+        #endregion
+
+        #region Command handlers
+        public AddNewCardOperationCommand AddNewCardOperationCommand { get; set; }
+
+        public SaveNewOperationCommand SaveNewOperationCommand { get; set; }
+
+        public RemoveOperationCommand RemoveOperationCommand { get; private set; }
+
+        public CommandHandler OpenImportDialog { get; set; }
+
+        public CommandHandler AddCategoryToOperationCategoriesCommand { get; set; }
+        #endregion // Command handlers
 
         public MainWindowViewModel(IDbLogicManager dbLogicManager, IMapper mapper)
         {
@@ -59,15 +79,57 @@ namespace PriorMoney.DesktopApp.ViewModel
             AddNewCardOperationCommand = new AddNewCardOperationCommand(this);
             SaveNewOperationCommand = new SaveNewOperationCommand(this);
             RemoveOperationCommand = new RemoveOperationCommand(this);
-
+            AddCategoryToOperationCategoriesCommand = new CommandHandler(o => true, AddAddCategoryToOperationCategories);
             IsNewCardOperationBeingAdded = false;
+
+            NewCardOperation.PropertyChanged += this.SaveNewOperationCommand.RaiseOperationModelChanged;
+        }
+
+        private async Task AddAddCategoryToOperationCategories(object arg)
+        {
+
+            var newCategoriesHashSet = new HashSet<string>();
+            foreach (var str in this.NewCardOperation.Categories)
+            {
+                newCategoriesHashSet.Add(str);
+            }
+            newCategoriesHashSet.Add(this.SelectedCategoryToAdd);
+
+            this.NewCardOperation.Categories = newCategoriesHashSet;
+        }
+
+        private void OnPropertyChanged(string propName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            }
         }
 
         public async Task LoadData()
         {
-            var operations = await _dbLogicManager.GetLastOperations(10);
+            var operations = await _dbLogicManager.GetLastOperations(30);
+            var categories = await _dbLogicManager.GetAllCategories();
 
-            MapCardOperationsToModels(operations);
+            CardOperations.Clear();
+
+            AddCardOperationsToModelCollection(operations);
+            AddCategoriesToModelCollection(categories);
+        }
+
+        public async Task LoadAdditionalData()
+        {
+            var skip = CardOperations.Count;
+            var take = 10;
+            var operations = await _dbLogicManager.GetLastOperations(take, skip);
+
+            AddCardOperationsToModelCollection(operations);
+        }
+
+        public async Task SaveCardOperation(CardOperationModel cardOperationModel)
+        {
+            var domainModel = _mapper.Map<CardOperation>(cardOperationModel);
+            await _dbLogicManager.CreateOrUpdateOperations(new List<CardOperation> { domainModel });
         }
 
         public async Task RemoveCardOperation(CardOperationModel cardOperation)
@@ -76,7 +138,7 @@ namespace PriorMoney.DesktopApp.ViewModel
             CardOperations.Remove(cardOperation);
         }
 
-        public async Task AddNewCardOperation()
+        public async Task InitializeNewCardOperationForAdding()
         {
             NewCardOperation.Clean();
             IsNewCardOperationBeingAdded = true;
@@ -90,13 +152,18 @@ namespace PriorMoney.DesktopApp.ViewModel
             var savedOperation = await _dbLogicManager.AddNewOperation(cardOperation);
             var savedOperationModel = _mapper.Map<CardOperationModel>(savedOperation);
 
-            CardOperations.Add(savedOperationModel);
+            CardOperations.Insert(0, savedOperationModel);
 
             NewCardOperation.Clean();
             IsNewCardOperationBeingAdded = false;
         }
 
-        private void MapCardOperationsToModels(List<CardOperation> operations)
+        private void AddCategoriesToModelCollection(List<string> categories)
+        {
+            AvailableCategories = categories;
+        }
+
+        private void AddCardOperationsToModelCollection(List<CardOperation> operations)
         {
             foreach(var op in operations)
             {

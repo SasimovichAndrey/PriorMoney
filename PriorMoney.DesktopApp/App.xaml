@@ -1,5 +1,13 @@
 ﻿<Application x:Class="PriorMoney.DesktopApp.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:PriorMoney.DesktopApp">
+             xmlns:local="clr-namespace:PriorMoney.DesktopApp"
+             xmlns:converters="clr-namespace:PriorMoney.DesktopApp.ViewModel.Converters"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <Application.Resources>
+        <converters:VisibilityToBoolConverter x:Key="VisibilityToBoolConverter"/>
+        <converters:CategoriesStringListToHashSetConverter x:Key="CategoriesStringListToHashSetConverter"/>
+        <converters:DateTimeToLocalDateStringConverter x:Key="DateTimeToLocalDateStringConverter"/>
+        <converters:DateTimeToLocalConverter x:Key="DateTimeToLocalConverter"/>
+    </Application.Resources>
 </Application>

@@ -18,9 +18,10 @@ namespace PriorMoney.Storage.Interface
         Task CreateOrUpdateOperations(List<CardOperation> editedOperations);
         Task<List<CardOperation>> GetOperationsByAmountSpent(decimal min, decimal max);
         Task<List<CardOperation>> GetOperationsByPeriod(DateTime startDate, DateTime endDate);
-        Task<List<CardOperation>> GetLastOperations(int operationsNumber);
+        Task<List<CardOperation>> GetLastOperations(int operationsNumber, int skip = 0);
         Task<List<CardOperation>> SearchOperationsByFilter(Expression<Func<CardOperation, bool>> filter);
         Task<CardOperation> AddNewOperation(CardOperation newCardOperation);
         Task RemoveCardOperationById(Guid id);
+        Task AddManyOperations(List<CardOperation> operations);
     }
 }

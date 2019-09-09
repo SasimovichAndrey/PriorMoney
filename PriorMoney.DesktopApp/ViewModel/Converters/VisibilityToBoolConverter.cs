@@ -22,7 +22,7 @@ namespace PriorMoney.DesktopApp.ViewModel.Converters
                 boolVisibility = !boolVisibility;
             }
 
-            return boolVisibility ? Visibility.Visible : Visibility.Hidden;
+            return boolVisibility ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
